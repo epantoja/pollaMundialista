@@ -1,0 +1,56 @@
+<form class="form-signin" [formGroup]="registroUsuario">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Usuario</label>
+    <input type="text" class="form-control" formControlName="CodUsuario" placeholder="Usuario">
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('CodUsuario').hasError('required') &&  registroUsuario.get('CodUsuario').touched">
+      El usuario es requerido
+    </small>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('CodUsuario').hasError('maxlength') &&  registroUsuario.get('CodUsuario').touched">
+      El usuario debe tener maximo 15 caracteres
+    </small>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('CodUsuario').hasError('minlength') &&  registroUsuario.get('CodUsuario').touched">
+      El usuario debe tener minimo 4 caracteres
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Grupo</label>
+    <select class="form-control" formControlName="GrupoUsuarioId">
+      <option value="" disabled selected>Seleccione un grupo</option>
+      <option *ngFor="let grupoUsuario of listaGrupoUsuario" value="{{grupoUsuario.id}}">{{grupoUsuario.nombre}}</option>
+    </select>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('GrupoUsuarioId').hasError('required') &&  registroUsuario.get('GrupoUsuarioId').touched">
+      Debe seleccionar un grupo
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Usuario</label>
+    <input type="text" class="form-control" formControlName="Nombres" placeholder="Nombres">
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('required') &&  registroUsuario.get('Nombres').touched">
+      El nombre de usuario es requerido
+    </small>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('maxlength') &&  registroUsuario.get('Nombres').touched">
+      El nombre debe tener maximo 150 caracteres
+    </small>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('minlength') &&  registroUsuario.get('Nombres').touched">
+      El nombre debe tener minimo 4 caracteres
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Clave</label>
+    <input type="password" class="form-control" formControlName="Contrasena" placeholder="Clave">
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('Contrasena').hasError('required') &&  registroUsuario.get('Contrasena').touched">
+      Escriba su contrasena
+    </small>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('Contrasena').hasError('maxlength') &&  registroUsuario.get('Contrasena').touched">
+      La contrasena debe tener maximo 15 caracteres
+    </small>
+    <small class="help-blok error-form" *ngIf="registroUsuario.get('Contrasena').hasError('minlength') &&  registroUsuario.get('Contrasena').touched">
+      La contrasena debe tener minimo 4 caracteres
+    </small>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" (click)="registrar()">Registrar</button>
+    <button class="btn btn-default" (click)="false" [routerLink]="['/home']">Cancelar</button>
+  </div>
+</form>

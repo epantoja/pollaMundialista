@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="alert alert-info" [hidden]="!frmActualizarUsuario.dirty">
+      <p>
+        <strong>Informacion: </strong>tienes un cambio pendiente. Guardalo antes de que se pierda!!..</p>
+    </div>
+    <div class="alert alert-info" [hidden]="!frmCambioClave.dirty">
+      <p>
+        <strong>Informacion: </strong>tienes un cambio pendiente de clave. Guardalo antes de que se pierda!!..</p>
+    </div>
+  </div>
+</div>
+<br>
+<tabset class="member-tabset">
+  <tab heading="Usuario">
+    <form #frmActualizarUsuario="ngForm" class="form-signin" [formGroup]="registroUsuario" id="frmActualizarUsuario">
+      <br>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Usuario</label>
+        <input disabled type="text" class="form-control" formControlName="CodUsuario" placeholder="Usuario">
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('CodUsuario').hasError('required') &&  registroUsuario.get('CodUsuario').touched">
+          El usuario es requerido
+        </small>
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('CodUsuario').hasError('maxlength') &&  registroUsuario.get('CodUsuario').touched">
+          El usuario debe tener maximo 15 caracteres
+        </small>
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('CodUsuario').hasError('minlength') &&  registroUsuario.get('CodUsuario').touched">
+          El usuario debe tener minimo 4 caracteres
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Grupo Actual</label>
+        <input disabled type="text" class="form-control" formControlName="GrupoActual" placeholder="Usuario">
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('GrupoActual').hasError('required') &&  registroUsuario.get('GrupoActual').touched">
+          El grupo actual es requerido
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Nombres</label>
+        <input type="text" class="form-control" formControlName="Nombres" placeholder="Nombres">
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('required') &&  registroUsuario.get('Nombres').touched">
+          El nombre de usuario es requerido
+        </small>
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('maxlength') &&  registroUsuario.get('Nombres').touched">
+          El nombre debe tener maximo 150 caracteres
+        </small>
+        <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('minlength') &&  registroUsuario.get('Nombres').touched">
+          El nombre debe tener minimo 4 caracteres
+        </small>
+      </div>
+
+      <div class="form-group text-center">
+        <button [disabled]="!frmActualizarUsuario.dirty" class="btn btn-success" (click)="modificarUsuario()">Actualizar</button>
+        <button class="btn btn-default" (click)="false" [routerLink]="['/home']">Cancelar</button>
+      </div>
+    </form>
+  </tab>
+  <tab heading="Grupos Asociados">
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Puntaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grupo of usuarioDetalle.grupoUsuario">
+          <td>{{grupo.nombre}}</td>
+          <td>{{grupo.id}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+  <tab heading="Cambiar Clave">
+    <br>
+    <form #frmCambioClave="ngForm" class="form-signin" [formGroup]="cambioClave" id="frmCambioClave">
+      <div class="form-group">
+        <label for="Contrasena">Clave Original</label>
+        <input type="password" class="form-control" formControlName="Contrasena" placeholder="Clave Original">
+        <small class="help-blok error-form" *ngIf="cambioClave.get('Contrasena').hasError('required') &&  cambioClave.get('Contrasena').touched">
+          La clave es requerido
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('Contrasena').hasError('maxlength') &&  cambioClave.get('Contrasena').touched">
+          La Clave debe tener maximo 15 caracteres
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('Contrasena').hasError('minlength') &&  cambioClave.get('Contrasena').touched">
+          La Clave debe tener minimo 4 caracteres
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="ContrasenaNueva">Clave Nueva</label>
+        <input type="password" class="form-control" formControlName="ContrasenaNueva" placeholder="Clave Nueva">
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ContrasenaNueva').hasError('required') &&  cambioClave.get('ContrasenaNueva').touched">
+          La Clave nueva es requerido
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ContrasenaNueva').hasError('maxlength') &&  cambioClave.get('ContrasenaNueva').touched">
+          La Clave nueva debe tener maximo 15 caracteres
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ContrasenaNueva').hasError('minlength') &&  cambioClave.get('ContrasenaNueva').touched">
+          La Clave nueva debe tener minimo 4 caracteres
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="ConfirmarContrasena">Confirmar Clave</label>
+        <input type="password" class="form-control" formControlName="ConfirmarContrasena" placeholder="Confirmar Clave">
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ConfirmarContrasena').hasError('required') &&  cambioClave.get('ConfirmarContrasena').touched">
+          Confirmar la clave es requerido
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ConfirmarContrasena').hasError('maxlength') &&  cambioClave.get('ConfirmarContrasena').touched">
+          Confirmar la clave debe tener maximo 15 caracteres
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ConfirmarContrasena').hasError('minlength') &&  cambioClave.get('ConfirmarContrasena').touched">
+          Confirmar la clave debe tener minimo 4 caracteres
+        </small>
+        <small class="help-blok error-form" *ngIf="cambioClave.get('ConfirmarContrasena').touched && cambioClave.hasError('mismatch')">
+          Las contrasenas debes ser iguales
+        </small>
+      </div>
+      <div class="form-group text-center">
+        <button [disabled]="!frmCambioClave.dirty" class="btn btn-success" (click)="modificarClaveUsuario()">Cambiar Clave</button>
+      </div>
+    </form>
+  </tab>
+</tabset>

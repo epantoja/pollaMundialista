@@ -1,0 +1,43 @@
+<form class="form-signin" [formGroup]="loginUsuario">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Usuario</label>
+    <input type="text" class="form-control" formControlName="CodUsuario" placeholder="Usuario">
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('CodUsuario').hasError('required') &&  loginUsuario.get('CodUsuario').touched">
+      El usuario es requerido
+    </small>
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('CodUsuario').hasError('maxlength') &&  loginUsuario.get('CodUsuario').touched">
+      El usuario debe tener maximo 15 caracteres
+    </small>
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('CodUsuario').hasError('minlength') &&  loginUsuario.get('CodUsuario').touched">
+      El usuario debe tener minimo 4 caracteres
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Grupo</label>
+    <select class="form-control" formControlName="GrupoUsuarioId">
+      <option value="" disabled selected>Seleccione un grupo</option>
+      <option *ngFor="let grupoUsuario of listaGrupoUsuario" value="{{grupoUsuario.id}}">{{grupoUsuario.nombre}}</option>
+    </select>
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('GrupoUsuarioId').hasError('required') &&  loginUsuario.get('GrupoUsuarioId').touched">
+      Debe seleccionar un grupo
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Clave</label>
+    <input type="password" class="form-control" formControlName="Contrasena" placeholder="Clave">
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('Contrasena').hasError('required') &&  loginUsuario.get('Contrasena').touched">
+      Escriba su contrasena
+    </small>
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('Contrasena').hasError('maxlength') &&  loginUsuario.get('Contrasena').touched">
+      La contrasena debe tener maximo 15 caracteres
+    </small>
+    <small class="help-blok error-form" *ngIf="loginUsuario.get('Contrasena').hasError('minlength') &&  loginUsuario.get('Contrasena').touched">
+      La contrasena debe tener minimo 4 caracteres
+    </small>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" (click)="logueo()">Entrar</button>
+    <button class="btn btn-default" (click)="false" [routerLink]="['/home']">Cancelar</button>
+  </div>
+</form>

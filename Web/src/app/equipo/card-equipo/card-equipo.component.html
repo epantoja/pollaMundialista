@@ -1,0 +1,28 @@
+<div class="animated fadeIn form-group text-center">
+  <div class="input-group">
+    <div class="card border-primary panel">
+      <div class="bordeImagen">
+        <img src="{{equipo.banderaUrl}}" alt="{{equipo.nombre}}">
+      </div>
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            {{equipo.nombre}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <a (click)="false" [routerLink]="['/administrar/equipos/editarEquipo/' + equipo.id]">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <div class="col-6">
+            <a href="javascript:;" (click)="eliminarEquipo(equipo.id)">
+              <i class="fa fa-trash-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

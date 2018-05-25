@@ -1,0 +1,11 @@
+D:\Proyectos\Polla Mundialista 2.0\Api\bin\Debug\netcoreapp2.0\Api.deps.json
+D:\Proyectos\Polla Mundialista 2.0\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.json
+D:\Proyectos\Polla Mundialista 2.0\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.dev.json
+D:\Proyectos\Polla Mundialista 2.0\Api\bin\Debug\netcoreapp2.0\Api.dll
+D:\Proyectos\Polla Mundialista 2.0\Api\bin\Debug\netcoreapp2.0\Api.pdb
+D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.csprojResolveAssemblyReference.cache
+D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.csproj.CoreCompileInputs.cache
+D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfoInputs.cache
+D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfo.cs
+D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.dll
+D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.pdb

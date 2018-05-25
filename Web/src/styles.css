@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+.error-form {
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.has-error {
+  border-color: red;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px red solid;
+}
+
+textarea.ng-invalid.ng-touched {
+  border: 1px red solid;
+}
+
+select.ng-invalid.ng-touched {
+  border: 1px red solid;
+}
+
+.error {
+  color: red;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 60%;
+  padding: 15px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .form-signin {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    margin: auto;
+  }
+}
+
+.dropdown-menu li,
+.dropdown-toggle,
+.dropdown-item,
+a {
+  cursor: pointer;
+}
+
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
