@@ -12622,23 +12622,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ErwinP\\.nuget\\packages\\": {},
+    "C:\\Users\\Administrador\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyectos\\Polla Mundialista 2.0\\Api\\Api.csproj",
+      "projectUniqueName": "P:\\Projects\\pollaMundialista\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "D:\\Proyectos\\Polla Mundialista 2.0\\Api\\Api.csproj",
-      "packagesPath": "C:\\Users\\ErwinP\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyectos\\Polla Mundialista 2.0\\Api\\obj\\",
+      "projectPath": "P:\\Projects\\pollaMundialista\\Api\\Api.csproj",
+      "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
+      "outputPath": "P:\\Projects\\pollaMundialista\\Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ErwinP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12646,8 +12646,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://ci.appveyor.com/nuget/hangfire": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
