@@ -17,12 +17,9 @@ namespace Api.Controllers {
     [Route ("api/[controller]")]
     public class GrupoUsuarioController : Controller {
         private readonly IGrupoUsuario _grupoUsuario;
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
 
-        public GrupoUsuarioController (IConfiguration configuration,
-            IMapper mapper, IGrupoUsuario grupoUsuario) {
-            _configuration = configuration;
+        public GrupoUsuarioController (IMapper mapper, IGrupoUsuario grupoUsuario) {
             _mapper = mapper;
             _grupoUsuario = grupoUsuario;
         }
@@ -37,5 +34,18 @@ namespace Api.Controllers {
             return Ok (grupoUsuarioReturn);
         }
 
+        [HttpGet ("Obtener/{Id}")]
+        public async Task<IActionResult> ObtenerGrupoUsuario (int Id) {
+
+            var grupoUsuarioBuscar = new GrupoUsuario {
+                Id = Id
+            };
+
+            var grupoUsuario = await _grupoUsuario.ObtenerGrupoUsuario (grupoUsuarioBuscar);
+
+            var grupoUsuarioReturn = _mapper.Map<GrupoUsuarioListaDto> (grupoUsuario);
+
+            return Ok (grupoUsuarioReturn);
+        }
     }
 }

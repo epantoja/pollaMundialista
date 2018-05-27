@@ -1,4 +1,3 @@
-import { Equipo } from "./../model/Equipo";
 import { Headers, RequestOptions, Response } from "@angular/http";
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
@@ -6,52 +5,56 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 import { Observable } from "rxjs/Observable";
 import { environment } from "../environments/environment";
+import { GrupoEquipo } from "../model/GrupoEquipo";
 import { AuthHttp } from "angular2-jwt";
-import { ActualizarEquipo } from "../model/ActualizarEquipo";
 
 @Injectable()
-export class EquipoService {
-  baseUrl = environment.apiUrl + "Equipo/";
+export class GrupoEquipoService {
+  baseUrl = environment.apiUrl + "GrupoEquipo/";
 
   constructor(private authHttp: AuthHttp) {}
 
-  eliminarEquipo(Id: number): Observable<Equipo> {
-    return this.authHttp
-      .get(this.baseUrl + "Eliminar/" + Id)
-      .catch(this.handlerError);
-  }
-
-  actualizarEquipo(
-    Id: number,
-    actualizarModel: ActualizarEquipo
-  ): Observable<ActualizarEquipo> {
-    return this.authHttp
-      .put(
-        this.baseUrl + "Actualizar/" + Id,
-        actualizarModel,
-        this.requestOptions()
-      )
-      .map(response => <ActualizarEquipo>response.json())
-      .catch(this.handlerError);
-  }
-
-  listarActivos(): Observable<Equipo[]> {
+  listar(): Observable<GrupoEquipo[]> {
     return this.authHttp
       .get(this.baseUrl + "Listar")
-      .map(response => <Equipo[]>response.json())
+      .map(response => <GrupoEquipo[]>response.json())
       .catch(this.handlerError);
   }
 
-  obtenerEquipo(id: number): Observable<ActualizarEquipo> {
+  listarTodos(): Observable<GrupoEquipo[]> {
+    return this.authHttp
+      .get(this.baseUrl + "ListarTodos")
+      .map(response => <GrupoEquipo[]>response.json())
+      .catch(this.handlerError);
+  }
+
+  guardar(grupoEquipoModel: GrupoEquipo) {
+    return this.authHttp
+      .post(this.baseUrl + "Guardar", grupoEquipoModel)
+      .catch(this.handlerError);
+  }
+
+  eliminar(id: number): Observable<GrupoEquipo[]> {
+    return this.authHttp
+      .get(this.baseUrl + "Eliminar/" + id)
+      .map(response => <GrupoEquipo[]>response.json())
+      .catch(this.handlerError);
+  }
+
+  obtener(id: number): Observable<GrupoEquipo> {
     return this.authHttp
       .get(this.baseUrl + "Obtener/" + id)
-      .map(response => <ActualizarEquipo>response.json())
+      .map(response => <GrupoEquipo>response.json())
       .catch(this.handlerError);
   }
 
-  guardarEquipo(registroModel: Equipo) {
+  actualizar(
+    id: number,
+    grupoEquipoModel: GrupoEquipo
+  ): Observable<GrupoEquipo> {
     return this.authHttp
-      .post(this.baseUrl + "Guardar", registroModel, this.requestOptions())
+      .put(this.baseUrl + "Actualizar/" + id, grupoEquipoModel)
+      .map(response => <GrupoEquipo>response.json())
       .catch(this.handlerError);
   }
 

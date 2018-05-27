@@ -105,50 +105,37 @@ namespace Api.Controllers {
             return Ok ("Eliminado Correctamente");
         }
 
-        [HttpGet ("Actualizar/{Id}")]
+        [HttpPut ("Actualizar/{Id}")]
         public async Task<IActionResult> ActualizarEquipo (int Id, [FromBody] ActualizarEquipoDto actualizarEquipoDto) {
 
             if (Id == 0)
                 return BadRequest ("No hay equipo para eliminar");
 
             var equipoBuscar = new Equipo {
-                Id = Id,
-                Nombre = actualizarEquipoDto.Nombre,
-                PartidosJugados = actualizarEquipoDto.PartidosJugados,
-                PartidosGanados = actualizarEquipoDto.PartidosGanados,
-                PartidosPerdidos = actualizarEquipoDto.PartidosPerdidos,
-                PartidosEmpatados = actualizarEquipoDto.PartidosEmpatados,
-                GolesAFavor = actualizarEquipoDto.GolesAFavor,
-                GolesEnContra = actualizarEquipoDto.GolesEnContra,
-                DiferenciaGoles = actualizarEquipoDto.DiferenciaGoles
+                Id = Id
             };
 
-            if (await _equipo.ObtenerEquipo (equipoBuscar) == null)
+            var obtenerEquipo = await _equipo.ObtenerEquipo (equipoBuscar);
+
+            if (obtenerEquipo == null)
                 return BadRequest ("El id del equipo no existe");
 
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
 
-            var archivo = actualizarEquipoDto.File;
+            obtenerEquipo.PartidosGanados = actualizarEquipoDto.PartidosGanados;
+            obtenerEquipo.PartidosJugados = actualizarEquipoDto.PartidosJugados;
+            obtenerEquipo.PartidosPerdidos = actualizarEquipoDto.PartidosPerdidos;
+            obtenerEquipo.GolesAFavor = actualizarEquipoDto.GolesAFavor;
+            obtenerEquipo.GolesEnContra = actualizarEquipoDto.GolesEnContra;
+            obtenerEquipo.DiferenciaGoles = actualizarEquipoDto.DiferenciaGoles;
+            obtenerEquipo.Puntos = actualizarEquipoDto.Puntos;
 
-            var uploadResult = new ImageUploadResult ();
+            var resultEquipo = await _equipo.ActualizarEquipo (obtenerEquipo);
 
-            if (archivo.Length > 0) {
-                using (var stream = archivo.OpenReadStream ()) {
-                    var uploadParamns = new ImageUploadParams () {
-                    File = new FileDescription (archivo.Name, stream)
-                    };
+            var mapResultEquipo = _mapper.Map<EquipoDetalleDto> (resultEquipo);
 
-                    uploadResult = _cloudinary.Upload (uploadParamns);
-                }
-            }
-
-            equipoBuscar.BanderaUrl = uploadResult.Uri.ToString ();
-            equipoBuscar.PublicId = uploadResult.PublicId;
-
-            var resultEquipo = await _equipo.ActualizarEquipo (equipoBuscar);
-
-            return Ok ("");
+            return Ok (mapResultEquipo);
         }
 
         [HttpGet ("Obtener/{Id}")]

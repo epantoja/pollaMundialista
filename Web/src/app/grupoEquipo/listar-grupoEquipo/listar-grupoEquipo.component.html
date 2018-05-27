@@ -1,0 +1,61 @@
+<nav class=" animated fadeIn  navbar navbar-expand-lg navbar-light bg-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['/administrar/grupoEquipos/nuevoGrupoEquipo']">Nuevo
+                    <i class="fa fa-plus"></i>
+                </a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Buscar Grupo Equipo" (input)="buscarGrupoEquipo($event.target.value)">
+        </form>
+    </div>
+</nav>
+<br>
+
+<form class="form-signin animated fadeIn">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Color</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Orden</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let grupoEquipo of listaGrupoEquipo">
+                <td>{{grupoEquipo.nombre}}</td>
+                <td>
+                    <div [ngStyle]="{'background-color': grupoEquipo.color}">
+                        <br>
+                    </div>
+                </td>
+                <td>{{grupoEquipo.estado}}</td>
+                <td>{{grupoEquipo.orden}}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-6">
+                            <a (click)="false" [routerLink]="['/administrar/grupoEquipos/editarGrupoEquipo/' + grupoEquipo.id]">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="javascript:;" (click)="eliminarGrupoEquipo(grupoEquipo.id)">
+                                <i class="fa fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

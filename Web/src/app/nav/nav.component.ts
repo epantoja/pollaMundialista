@@ -9,7 +9,6 @@ import { Router } from "@angular/router";
   styleUrls: ["./nav.component.css"]
 })
 export class NavComponent implements OnInit {
-
   constructor(
     private usuarioService: UsuarioService,
     private mensajeService: MensajeService,
@@ -23,9 +22,12 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this.usuarioService.userToken = null;
-    localStorage.removeItem("token");
-    this.mensajeService.message("Chao, vuelve pronto");
-    this.router.navigate(["/home"]);
+    this.mensajeService.confirm("Esta segunro que quiere salir?", () => {
+      this.usuarioService.userToken = null;
+      localStorage.removeItem("token");
+      this.mensajeService.message("Chao, vuelve pronto");
+      this.router.navigate(["/home"]);
+    });
+    
   }
 }

@@ -1,13 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
 
 namespace Api.Dto {
     public class ActualizarEquipoDto {
         [Required (ErrorMessage = "El campo Nombre es requerido")]
         [StringLength (150, MinimumLength = 4, ErrorMessage = "El Nombre debe ser entre 4 y 150 caracteres")]
         public string Nombre { get; set; }
-        public string BanderaUrl { get; set; }
-        public string PublicId { get; set; }
 
         [Required (ErrorMessage = "El campo PartidosJugados es requerido")]
         public int PartidosJugados { get; set; }
@@ -33,7 +30,5 @@ namespace Api.Dto {
         [Required (ErrorMessage = "El campo Puntos es requerido")]
         public int Puntos { get; set; }
 
-        [Required (ErrorMessage = "El campo File es requerido")]
-        public IFormFile File { get; set; }
     }
 }

@@ -35,8 +35,7 @@ namespace Api.BL {
 
         public async Task<Equipo> ActualizarEquipo (Equipo equipo) {
             try {
-                 _context.Equipo.Update (equipo);
-
+                _context.Equipo.Update (equipo);
                 await _context.SaveChangesAsync ();
 
                 return equipo;

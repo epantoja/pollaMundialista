@@ -1,4 +1,8 @@
-import { EditarEquipoResolver } from './../resolvers/editar-equipo.resolver';
+import { EditarGrupoEquipoComponent } from './grupoEquipo/editar-grupoEquipo/editar-grupoEquipo.component';
+import { GrupoEquipoService } from './../servicios/grupoEquipo.service';
+import { CambiosPendientesPerfil } from "./../guards/cambiosPendientesPerfil.guard";
+import { ListarGrupoEquipoComponent } from "./grupoEquipo/listar-grupoEquipo/listar-grupoEquipo.component";
+import { EditarEquipoResolver } from "./../resolvers/editar-equipo.resolver";
 import { EditarEquipoComponent } from "./equipo/editar-equipo/editar-equipo.component";
 import { FileUploadModule } from "ng2-file-upload";
 import { EquipoService } from "./../servicios/equipo.service";
@@ -26,7 +30,6 @@ import { RegistrarComponent } from "./registrar/registrar.component";
 
 import { ModalModule, TabsModule } from "ngx-bootstrap";
 import { BsDropdownModule } from "ngx-bootstrap";
-import { GrupoEquipoComponent } from "./grupoEquipo/grupoEquipo.component";
 import { JuegoComponent } from "./juego/juego.component";
 import { UsuarioComponent } from "./usuario/usuario.component";
 import { GrupoUsuarioComponent } from "./grupoUsuario/grupoUsuario.component";
@@ -35,6 +38,8 @@ import { PerfilComponent } from "./perfil/perfil.component";
 import { AuthModule } from "./auth/auth.module";
 import { ListarEquipoResolver } from "../resolvers/listar-equipo.resolver";
 import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.component";
+import { NuevoGrupoEquipoComponent } from "./grupoEquipo/nuevo-grupoEquipo/nuevo-grupoEquipo.component";
+import { ListarGrupoEquipoResolver } from '../resolvers/listar-grupoEquipo.resolver';
 
 @NgModule({
   declarations: [
@@ -44,14 +49,16 @@ import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.compone
     HomeComponent,
     RegistrarComponent,
     ListarEquipoComponent,
-    GrupoEquipoComponent,
+    ListarGrupoEquipoComponent,
+    NuevoGrupoEquipoComponent,
     JuegoComponent,
     UsuarioComponent,
     GrupoUsuarioComponent,
     PerfilComponent,
     CardEquipoComponent,
     NuevoEquipoComponent,
-    EditarEquipoComponent
+    EditarEquipoComponent,
+    EditarGrupoEquipoComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,10 @@ import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.compone
     UsuarioResolver,
     ListarEquipoResolver,
     EquipoService,
-    EditarEquipoResolver
+    EditarEquipoResolver,
+    CambiosPendientesPerfil,
+    GrupoEquipoService,
+    ListarGrupoEquipoResolver
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-<form #frmRegistrarEquipo="ngForm" [formGroup]="registroEquipo" class="form-signin" id="frmRegistrarEquipo">
+<form #frmRegistrarEquipo="ngForm" [formGroup]="registroEquipo" class="form-signin animated fadeIn" id="frmRegistrarEquipo">
 
   <fieldset>
     <legend>Nuevo equipo</legend>
@@ -17,20 +17,6 @@
     </div>
 
     <div class="form-group">
-      <label for="">Nombre</label>
-      <input type="text" class="form-control" formControlName="Nombre" placeholder="Nombre Equipo">
-      <small class="help-blok error-form" *ngIf="registroEquipo.get('Nombre').hasError('required') &&  registroEquipo.get('Nombre').touched">
-        El nombre es requerido
-      </small>
-      <small class="help-blok error-form" *ngIf="registroEquipo.get('Nombre').hasError('maxlength') &&  registroEquipo.get('Nombre').touched">
-        El nombre debe tener maximo 150 caracteres
-      </small>
-      <small class="help-blok error-form" *ngIf="registroEquipo.get('Nombre').hasError('minlength') &&  registroEquipo.get('Nombre').touched">
-        El nombre debe tener minimo 4 caracteres
-      </small>
-    </div>
-
-    <div class="form-group">
       <label for="">Bandera</label>
       <div class="input-group mb-3">
         <input formControlName="File" type="file" ng2FileSelect (change)="SeleccionarFoto($event)" [uploader]="uploader" />
@@ -44,7 +30,7 @@
   </fieldset>
 
   <div class="form-group text-center">
-    <button class="btn btn-success" (click)="RegistrarEquipo()">Registrar</button>
+    <button [disabled]="!frmRegistrarEquipo.dirty" class="btn btn-success" (click)="RegistrarEquipo()">Registrar</button>
     <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/equipos']">Cancelar</button>
   </div>
 </form>

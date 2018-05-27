@@ -7,8 +7,6 @@ import { FileUploader } from "ng2-file-upload";
 import { environment } from "../../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
 
-const URL = environment.apiUrl + "Equipo/Guardar";
-
 @Component({
   selector: "app-editar-equipo",
   templateUrl: "./editar-equipo.component.html",
@@ -19,11 +17,7 @@ export class EditarEquipoComponent implements OnInit {
   localUrl: string;
   equipoModel: ActualizarEquipo = {} as ActualizarEquipo;
   @ViewChild("frmActualizaEquipo") frmActualizaEquipo: NgForm;
-
-  uploader: FileUploader = new FileUploader({
-    url: URL,
-    authToken: "Bearer " + localStorage.getItem("token")
-  });
+  idEquipo: number;
 
   constructor(
     private fb: FormBuilder,
@@ -39,9 +33,9 @@ export class EditarEquipoComponent implements OnInit {
   }
 
   obtnerEquipo() {
-    var idEquipo = this.route.snapshot.params["id"];
+    this.idEquipo = this.route.snapshot.params["id"];
 
-    this.equipoService.obtenerEquipo(idEquipo).subscribe(
+    this.equipoService.obtenerEquipo(this.idEquipo).subscribe(
       data => {
         this.equipoModel = data;
       },
@@ -65,7 +59,6 @@ export class EditarEquipoComponent implements OnInit {
           Validators.maxLength(150)
         ]
       ],
-      File: ["", Validators.required],
       partidosJugados: [this.equipoModel.partidosJugados, Validators.required],
       partidosGanados: [this.equipoModel.partidosGanados, Validators.required],
       partidosEmpatados: [
@@ -87,14 +80,17 @@ export class EditarEquipoComponent implements OnInit {
     if (this.actualizaEquipo.valid) {
       this.equipoModel = Object.assign({}, this.actualizaEquipo.value);
 
-      this.uploader.options.additionalParameter = this.equipoModel;
-
-      this.uploader.uploadAll();
-
-      this.mensajeService.success("Registrado Correctamente ");
-
-      this.localUrl = "./assets/img/imgFondoBandera.jpg";
-      this.frmActualizaEquipo.reset();
+      this.equipoService
+        .actualizarEquipo(this.idEquipo, this.equipoModel)
+        .subscribe(
+          equipo => {
+            this.equipoModel = equipo;
+            this.mensajeService.success("Registrado Correctamente ");
+          },
+          error => {
+            this.mensajeService.error("Ocurrio un error interno");
+          }
+        );
     }
   }
 

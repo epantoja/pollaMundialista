@@ -11,6 +11,10 @@ export class MensajeService {
     });
   }
 
+  menssageConfirm(message: string) {
+    alertify.confirm(message);
+  }
+
   success(message: string) {
     alertify.success(message);
   }

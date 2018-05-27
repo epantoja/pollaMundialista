@@ -1,4 +1,4 @@
-<form class="form-signin" [formGroup]="registroUsuario">
+<form class="form-signin animated fadeIn" [formGroup]="registroUsuario">
   <div class="form-group">
     <label for="formGroupExampleInput">Usuario</label>
     <input type="text" class="form-control" formControlName="CodUsuario" placeholder="Usuario">
@@ -23,7 +23,7 @@
     </small>
   </div>
   <div class="form-group">
-    <label for="formGroupExampleInput">Usuario</label>
+    <label for="formGroupExampleInput">Nombres</label>
     <input type="text" class="form-control" formControlName="Nombres" placeholder="Nombres">
     <small class="help-blok error-form" *ngIf="registroUsuario.get('Nombres').hasError('required') &&  registroUsuario.get('Nombres').touched">
       El nombre de usuario es requerido

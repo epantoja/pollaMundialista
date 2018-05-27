@@ -14,6 +14,9 @@ namespace Api.Models {
         [Required]
         [StringLength (150)]
         public string Color { get; set; }
+
+        [Required]
+        public int Orden { get; set; }
         public bool Estado { get; set; }
     }
 }

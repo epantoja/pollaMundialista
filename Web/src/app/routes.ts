@@ -1,3 +1,7 @@
+import { EditarGrupoEquipoComponent } from './grupoEquipo/editar-grupoEquipo/editar-grupoEquipo.component';
+import { ListarGrupoEquipoResolver } from "./../resolvers/listar-grupoEquipo.resolver";
+import { CambiosPendientesPerfil } from "./../guards/cambiosPendientesPerfil.guard";
+import { ListarGrupoEquipoComponent } from "./grupoEquipo/listar-grupoEquipo/listar-grupoEquipo.component";
 import { EditarEquipoResolver } from "./../resolvers/editar-equipo.resolver";
 import { EditarEquipoComponent } from "./equipo/editar-equipo/editar-equipo.component";
 import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.component";
@@ -8,7 +12,6 @@ import { LoginGuard } from "./../guards/login.guard";
 import { GrupoUsuarioComponent } from "./grupoUsuario/grupoUsuario.component";
 import { UsuarioComponent } from "./usuario/usuario.component";
 import { JuegoComponent } from "./juego/juego.component";
-import { GrupoEquipoComponent } from "./grupoEquipo/grupoEquipo.component";
 import { LoginComponent } from "./login/login.component";
 
 import { Routes } from "@angular/router";
@@ -17,6 +20,7 @@ import { RegistrarComponent } from "./registrar/registrar.component";
 import { AuthGuard } from "../guards/auth.guard";
 import { AuthAdminGuard } from "../guards/authAdmin.guard";
 import { ListarEquipoResolver } from "../resolvers/listar-equipo.resolver";
+import { NuevoGrupoEquipoComponent } from "./grupoEquipo/nuevo-grupoEquipo/nuevo-grupoEquipo.component";
 
 export const appRoutes: Routes = [
   {
@@ -37,7 +41,19 @@ export const appRoutes: Routes = [
         path: "administrar/equipos/editarEquipo/:id",
         component: EditarEquipoComponent
       },
-      { path: "administrar/grupoEquipos", component: GrupoEquipoComponent },
+      {
+        path: "administrar/grupoEquipos",
+        resolve: { listaGrupoEquipo: ListarGrupoEquipoResolver },
+        component: ListarGrupoEquipoComponent
+      },
+      {
+        path: "administrar/grupoEquipos/nuevoGrupoEquipo",
+        component: NuevoGrupoEquipoComponent
+      },
+      {
+        path: "administrar/grupoEquipos/editarGrupoEquipo/:id",
+        component: EditarGrupoEquipoComponent
+      },
       { path: "administrar/juegos", component: JuegoComponent },
       { path: "administrar/usuarios", component: UsuarioComponent },
       { path: "administrar/grupoUsuarios", component: GrupoUsuarioComponent }
@@ -51,7 +67,8 @@ export const appRoutes: Routes = [
       {
         path: "perfil",
         component: PerfilComponent,
-        resolve: { usuarioDetalle: UsuarioResolver }
+        resolve: { usuarioDetalle: UsuarioResolver },
+        canDeactivate: [CambiosPendientesPerfil]
       }
     ]
   },

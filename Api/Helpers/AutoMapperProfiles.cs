@@ -23,7 +23,13 @@ namespace Api.Helpers {
 
             CreateMap<Equipo, EquipoDetalleDto> ();
 
+            CreateMap<Equipo, ActualizarEquipoDto> ();
+
+            CreateMap<ActualizarEquipoDto, Equipo> ();
+
             CreateMap<Equipo, EquipoListaDto> ();
+
+            CreateMap<GrupoEquipo, GrupoEquipoListaDto> ();
         }
     }
 }

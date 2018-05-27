@@ -14,13 +14,12 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Buscar listaEquipos" (input)="buscarEquipo($event.target.value)">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar Equipo" (input)="buscarEquipo($event.target.value)">
     </form>
   </div>
 </nav>
 <br>
-<div class="container">
+<div class="container animated fadeIn">
   <div class="row equal">
     <div *ngFor="let equipo of listaEquipos" class="col-lg-2 col-md-3 col-sm-6">
       <app-card-equipo class="animated fadeIn" [equipo]="equipo" (desdeCardEquipo)="recibirListaEquipos($event)"></app-card-equipo>

@@ -2,7 +2,6 @@ export interface ActualizarEquipo {
   id: string;
   nombre: string;
   banderaUrl: string;
-  publicId: string;
   partidosJugados: number;
   partidosGanados: number;
   partidosEmpatados: number;

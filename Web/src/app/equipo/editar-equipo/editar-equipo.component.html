@@ -1,139 +1,142 @@
-<form #frmActualizaEquipo="ngForm" [formGroup]="actualizaEquipo" class="form-signin animated fadeIn " id="frmActualizaEquipo">
+<div class="animated fadeIn">
 
-  <fieldset>
-    <legend>Nuevo equipo</legend>
+  <legend>
+    Actualizar equipo
+  </legend>
 
-    <div class="form-group ">
-      <div class="input-group">
-        <div class="card border-primary">
-          <img style="height: 200px; width: 100%; display: block;" [src]="localUrl" alt="Card image">
-          <div class="card-header">Equipo</div>
-          <div class="card-body">
-            <h4 class="card-title">{{actualizaEquipo.get('Nombre').value }}</h4>
-            <p class="card-text">Equipo mundialista</p>
+
+
+  <tabset class="member-tabset ">
+    <tab heading="Datos principales">
+      <form #frmActualizaEquipo="ngForm" [formGroup]="actualizaEquipo" class="form-signin" id="frmActualizaEquipo">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Nombre</label>
+              <input type="text" class="form-control" formControlName="Nombre" placeholder="Nombre Equipo">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Nombre').hasError('required') &&  actualizaEquipo.get('Nombre').touched">
+                El nombre es requerido
+              </small>
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Nombre').hasError('maxlength') &&  actualizaEquipo.get('Nombre').touched">
+                El nombre debe tener maximo 150 caracteres
+              </small>
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Nombre').hasError('minlength') &&  actualizaEquipo.get('Nombre').touched">
+                El nombre debe tener minimo 4 caracteres
+              </small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Partidos Jugados</label>
+              <input type="text" class="form-control" formControlName="partidosJugados" placeholder="Partidos Jugados">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosJugados').hasError('required') &&  actualizaEquipo.get('partidosJugados').touched">
+                El numero de partidos jugados es requerido
+              </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="">Bandera</label>
-      <div class="input-group mb-3">
-        <input formControlName="File" type="file" ng2FileSelect (change)="SeleccionarFoto($event)" [uploader]="uploader" />
-      </div>
-      <small class="help-blok error-form" *ngIf="actualizaEquipo.get('File').hasError('required') &&  actualizaEquipo.get('File').touched">
-        La Bandera es requerido
-      </small>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Nombre</label>
-          <input type="text" class="form-control" formControlName="Nombre" placeholder="Nombre Equipo">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Nombre').hasError('required') &&  actualizaEquipo.get('Nombre').touched">
-            El nombre es requerido
-          </small>
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Nombre').hasError('maxlength') &&  actualizaEquipo.get('Nombre').touched">
-            El nombre debe tener maximo 150 caracteres
-          </small>
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Nombre').hasError('minlength') &&  actualizaEquipo.get('Nombre').touched">
-            El nombre debe tener minimo 4 caracteres
-          </small>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Partidos Ganados</label>
+              <input type="text" class="form-control" formControlName="partidosGanados" placeholder="Partidos Ganados">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosGanados').hasError('required') &&  actualizaEquipo.get('partidosGanados').touched">
+                El numero de partidos ganados es requerido
+              </small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Partidos Empatados</label>
+              <input type="text" class="form-control" formControlName="partidosEmpatados" placeholder="Partidos Empatados">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosEmpatados').hasError('required') &&  actualizaEquipo.get('partidosEmpatados').touched">
+                El numero de partidos empatados es requerido
+              </small>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Partidos Jugados</label>
-          <input type="text" class="form-control" formControlName="partidosJugados" placeholder="Partidos Jugados">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosJugados').hasError('required') &&  actualizaEquipo.get('partidosJugados').touched">
-            El numero de partidos jugados es requerido
-          </small>
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Partidos Ganados</label>
-          <input type="text" class="form-control" formControlName="partidosGanados" placeholder="Partidos Ganados">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosGanados').hasError('required') &&  actualizaEquipo.get('partidosGanados').touched">
-            El numero de partidos ganados es requerido
-          </small>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Partidos Perdidos</label>
+              <input type="text" class="form-control" formControlName="partidosPerdidos" placeholder="Partidos Perdidos">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosPerdidos').hasError('required') &&  actualizaEquipo.get('partidosPerdidos').touched">
+                El numero de partidos perdidos es requerido
+              </small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Goles A Favor</label>
+              <input type="text" class="form-control" formControlName="golesAFavor" placeholder="Gloes A Favor">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('golesAFavor').hasError('required') &&  actualizaEquipo.get('golesAFavor').touched">
+                El numero de goles a favor es requerido
+              </small>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Partidos Empatados</label>
-          <input type="text" class="form-control" formControlName="partidosEmpatados" placeholder="Partidos Empatados">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosEmpatados').hasError('required') &&  actualizaEquipo.get('partidosEmpatados').touched">
-            El numero de partidos empatados es requerido
-          </small>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Goles En Contra</label>
+              <input type="text" class="form-control" formControlName="golesEnContra" placeholder="Goles En Contra">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('golesEnContra').hasError('required') &&  actualizaEquipo.get('golesEnContra').touched">
+                El numero de goles en contra es requerido
+              </small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Diferencia De Goles</label>
+              <input type="text" class="form-control" formControlName="diferenciaGoles" placeholder="Diferencia De Goles">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('diferenciaGoles').hasError('required') &&  actualizaEquipo.get('diferenciaGoles').touched">
+                El numero de diferencia de goles es requerido
+              </small>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Partidos Perdidos</label>
-          <input type="text" class="form-control" formControlName="partidosPerdidos" placeholder="Partidos Perdidos">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('partidosPerdidos').hasError('required') &&  actualizaEquipo.get('partidosPerdidos').touched">
-            El numero de partidos perdidos es requerido
-          </small>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="">Puntos</label>
+              <input type="text" class="form-control" formControlName="puntos" placeholder="Puntos">
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('puntos').hasError('required') &&  actualizaEquipo.get('puntos').touched">
+                El puntaje es requerido
+              </small>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Goles A Favor</label>
-          <input type="text" class="form-control" formControlName="golesAFavor" placeholder="Gloes A Favor">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('golesAFavor').hasError('required') &&  actualizaEquipo.get('golesAFavor').touched">
-            El numero de goles a favor es requerido
-          </small>
+
+        <div class="form-group text-center">
+          <button [disabled]="!frmActualizaEquipo.dirty" class="btn btn-success" (click)="ActualizarEquipo()">Actualizar</button>
+          <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/equipos']">Cancelar</button>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Goles En Contra</label>
-          <input type="text" class="form-control" formControlName="golesEnContra" placeholder="Goles En Contra">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('golesEnContra').hasError('required') &&  actualizaEquipo.get('golesEnContra').touched">
-            El numero de goles en contra es requerido
-          </small>
+      </form>
+    </tab>
+    <tab heading="Bandera">
+      <form #frmActualizaBandera="ngForm" [formGroup]="actualizaEquipo" class="form-signin" id="frmActualizaBandera">
+        <div class="form-group ">
+          <div class="input-group">
+            <div class="card border-primary">
+              <img style="height: 200px; width: 100%; display: block;" [src]="localUrl" alt="Card image">
+              <div class="card-header">Equipo</div>
+              <div class="card-body">
+                <h4 class="card-title">{{actualizaEquipo.get('Nombre').value }}</h4>
+                <p class="card-text">Equipo mundialista</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          <label for="">Diferencia De Goles</label>
-          <input type="text" class="form-control" formControlName="diferenciaGoles" placeholder="Diferencia De Goles">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('diferenciaGoles').hasError('required') &&  actualizaEquipo.get('diferenciaGoles').touched">
-            El numero de diferencia de goles es requerido
-          </small>
+
+        <div class="form-group text-center">
+          <button [disabled]="!frmActualizaEquipo.dirty" class="btn btn-success" (click)="ActualizarEquipo()">Actualizar Bandera</button>
+          <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/equipos']">Cancelar</button>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <label for="">Puntos</label>
-          <input type="text" class="form-control" formControlName="puntos" placeholder="Puntos">
-          <small class="help-blok error-form" *ngIf="actualizaEquipo.get('puntos').hasError('required') &&  actualizaEquipo.get('puntos').touched">
-            El puntaje es requerido
-          </small>
-        </div>
-      </div>
-    </div>
-
-
-
-  </fieldset>
-
-  <div class="form-group text-center">
-    <button class="btn btn-success" (click)="ActualizarEquipo()">Registrar</button>
-    <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/equipos']">Cancelar</button>
-  </div>
-</form>
+      </form>
+    </tab>
+  </tabset>
+</div>
