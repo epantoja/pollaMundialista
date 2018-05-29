@@ -9,3 +9,14 @@ D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfoI
 D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfo.cs
 D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.dll
 D:\Proyectos\Polla Mundialista 2.0\Api\obj\Debug\netcoreapp2.0\Api.pdb
+P:\Projects\pollaMundialista\Api\bin\Debug\netcoreapp2.0\Api.deps.json
+P:\Projects\pollaMundialista\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.json
+P:\Projects\pollaMundialista\Api\bin\Debug\netcoreapp2.0\Api.runtimeconfig.dev.json
+P:\Projects\pollaMundialista\Api\bin\Debug\netcoreapp2.0\Api.dll
+P:\Projects\pollaMundialista\Api\bin\Debug\netcoreapp2.0\Api.pdb
+P:\Projects\pollaMundialista\Api\obj\Debug\netcoreapp2.0\Api.csprojResolveAssemblyReference.cache
+P:\Projects\pollaMundialista\Api\obj\Debug\netcoreapp2.0\Api.csproj.CoreCompileInputs.cache
+P:\Projects\pollaMundialista\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfoInputs.cache
+P:\Projects\pollaMundialista\Api\obj\Debug\netcoreapp2.0\Api.AssemblyInfo.cs
+P:\Projects\pollaMundialista\Api\obj\Debug\netcoreapp2.0\Api.dll
+P:\Projects\pollaMundialista\Api\obj\Debug\netcoreapp2.0\Api.pdb
