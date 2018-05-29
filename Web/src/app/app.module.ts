@@ -1,7 +1,9 @@
-import { EditarGrupoEquipoComponent } from './grupoEquipo/editar-grupoEquipo/editar-grupoEquipo.component';
-import { GrupoEquipoService } from './../servicios/grupoEquipo.service';
+import { GrupoService } from "./../servicios/grupo.service";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { EditarFaseComponent } from "./fase/editar-fase/editar-fase.component";
+import { FaseService } from "./../servicios/fase.service";
 import { CambiosPendientesPerfil } from "./../guards/cambiosPendientesPerfil.guard";
-import { ListarGrupoEquipoComponent } from "./grupoEquipo/listar-grupoEquipo/listar-grupoEquipo.component";
+import { ListarFaseComponent } from "./fase/listar-fase/listar-fase.component";
 import { EditarEquipoResolver } from "./../resolvers/editar-equipo.resolver";
 import { EditarEquipoComponent } from "./equipo/editar-equipo/editar-equipo.component";
 import { FileUploadModule } from "ng2-file-upload";
@@ -38,8 +40,8 @@ import { PerfilComponent } from "./perfil/perfil.component";
 import { AuthModule } from "./auth/auth.module";
 import { ListarEquipoResolver } from "../resolvers/listar-equipo.resolver";
 import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.component";
-import { NuevoGrupoEquipoComponent } from "./grupoEquipo/nuevo-grupoEquipo/nuevo-grupoEquipo.component";
-import { ListarGrupoEquipoResolver } from '../resolvers/listar-grupoEquipo.resolver';
+import { NuevoFaseComponent } from "./fase/nuevo-fase/nuevo-fase.component";
+import { ListarFaseResolver } from "../resolvers/listar-fase.resolver";
 
 @NgModule({
   declarations: [
@@ -49,8 +51,8 @@ import { ListarGrupoEquipoResolver } from '../resolvers/listar-grupoEquipo.resol
     HomeComponent,
     RegistrarComponent,
     ListarEquipoComponent,
-    ListarGrupoEquipoComponent,
-    NuevoGrupoEquipoComponent,
+    ListarFaseComponent,
+    NuevoFaseComponent,
     JuegoComponent,
     UsuarioComponent,
     GrupoUsuarioComponent,
@@ -58,7 +60,7 @@ import { ListarGrupoEquipoResolver } from '../resolvers/listar-grupoEquipo.resol
     CardEquipoComponent,
     NuevoEquipoComponent,
     EditarEquipoComponent,
-    EditarGrupoEquipoComponent
+    EditarFaseComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { ListarGrupoEquipoResolver } from '../resolvers/listar-grupoEquipo.resol
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ReactiveFormsModule,
-    FileUploadModule
+    FileUploadModule,
+    NgSelectModule
   ],
   providers: [
     GrupoUsuarioService,
@@ -84,8 +87,9 @@ import { ListarGrupoEquipoResolver } from '../resolvers/listar-grupoEquipo.resol
     EquipoService,
     EditarEquipoResolver,
     CambiosPendientesPerfil,
-    GrupoEquipoService,
-    ListarGrupoEquipoResolver
+    FaseService,
+    ListarFaseResolver,
+    GrupoService
   ],
   bootstrap: [AppComponent]
 })

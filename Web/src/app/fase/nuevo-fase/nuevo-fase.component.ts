@@ -2,22 +2,22 @@ import { MensajeService } from "./../../../servicios/mensaje.service";
 import { AuthAdminGuard } from "./../../../guards/authAdmin.guard";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
-import { GrupoEquipo } from "../../../model/GrupoEquipo";
-import { GrupoEquipoService } from "../../../servicios/grupoEquipo.service";
+import { Fase } from "../../../model/Fase";
+import { FaseService } from "../../../servicios/fase.service";
 
 @Component({
-  selector: "app-nuevo-grupoEquipo",
-  templateUrl: "./nuevo-grupoEquipo.component.html",
-  styleUrls: ["./nuevo-grupoEquipo.component.css"]
+  selector: "app-nuevo-fase",
+  templateUrl: "./nuevo-fase.component.html",
+  styleUrls: ["./nuevo-fase.component.css"]
 })
-export class NuevoGrupoEquipoComponent implements OnInit {
-  registroGrupoEquipo: FormGroup;
-  equipoModel: GrupoEquipo = {} as GrupoEquipo;
-  @ViewChild("frmRegistrarGrupoEquipo") frmRegistrarGrupoEquipo: NgForm;
+export class NuevoFaseComponent implements OnInit {
+  registroFase: FormGroup;
+  equipoModel: Fase = {} as Fase;
+  @ViewChild("frmRegistrarFase") frmRegistrarFase: NgForm;
 
   constructor(
     private fb: FormBuilder,
-    private grupoEquipoService: GrupoEquipoService,
+    private faseService: FaseService,
     private mensajeService: MensajeService
   ) {}
 
@@ -26,7 +26,7 @@ export class NuevoGrupoEquipoComponent implements OnInit {
   }
 
   inicializarFormulario() {
-    this.registroGrupoEquipo = this.fb.group({
+    this.registroFase = this.fb.group({
       Nombre: ["", Validators.required],
       Color: ["#ff0000", Validators.required],
       Orden: ["0", Validators.required]
@@ -34,12 +34,12 @@ export class NuevoGrupoEquipoComponent implements OnInit {
   }
 
   registrarGrupo() {
-    if (this.registroGrupoEquipo.valid) {
-      this.equipoModel = Object.assign({}, this.registroGrupoEquipo.value);
+    if (this.registroFase.valid) {
+      this.equipoModel = Object.assign({}, this.registroFase.value);
 
-      this.grupoEquipoService.guardar(this.equipoModel).subscribe(
+      this.faseService.guardar(this.equipoModel).subscribe(
         () => {
-          this.frmRegistrarGrupoEquipo.reset();
+          this.frmRegistrarFase.reset();
           this.mensajeService.success("Registrado Correctamente ");
         },
         error => {

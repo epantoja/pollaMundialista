@@ -10,4 +10,5 @@ export interface ActualizarEquipo {
   golesEnContra: number;
   diferenciaGoles: number;
   puntos: number;
+  grupo: string;
 }

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Api.Dto {
-    public class GrupoEquipoDto {
+    public class FaseDto {
         [Required (ErrorMessage = "El campo Nombre es requerido")]
         [StringLength (150, MinimumLength = 4, ErrorMessage = "La Nombre debe ser entre 4 y 150 caracteres")]
         public string Nombre { get; set; }

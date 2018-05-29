@@ -15,7 +15,19 @@
         </div>
       </div>
     </div>
-
+    <div class="form-group">
+      <label for="">Nombre</label>
+      <input type="text" class="form-control" formControlName="Nombre" placeholder="Nombre Equipo">
+      <small class="help-blok error-form" *ngIf="registroEquipo.get('Nombre').hasError('required') &&  registroEquipo.get('Nombre').touched">
+        El nombre es requerido
+      </small>
+      <small class="help-blok error-form" *ngIf="registroEquipo.get('Nombre').hasError('maxlength') &&  registroEquipo.get('Nombre').touched">
+        El nombre debe tener maximo 150 caracteres
+      </small>
+      <small class="help-blok error-form" *ngIf="registroEquipo.get('Nombre').hasError('minlength') &&  registroEquipo.get('Nombre').touched">
+        El nombre debe tener minimo 4 caracteres
+      </small>
+    </div>
     <div class="form-group">
       <label for="">Bandera</label>
       <div class="input-group mb-3">
@@ -27,6 +39,15 @@
     </div>
 
 
+    <div class="form-group">
+      <label for="">Grupo</label>
+      <ng-select formControlName="Grupo" [items]="listaGrupo" bindLabel="nombre" bindValue="nombre" placeholder="Fase de grupo"
+        [dropdownPosition]="'down'">
+      </ng-select>
+      <small class="help-blok error-form" *ngIf="registroEquipo.get('Grupo').hasError('required') &&  registroEquipo.get('Grupo').touched">
+        El grupo es requerido
+      </small>
+    </div>
   </fieldset>
 
   <div class="form-group text-center">

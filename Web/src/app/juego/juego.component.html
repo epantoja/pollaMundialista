@@ -1,3 +1,59 @@
-<p>
-  juego works!
-</p>
+<form #frmRegistrarJuego="ngForm" class="form-signin animated fadeIn" id="frmRegistrarJuego">
+
+  <fieldset>
+    <legend>Nuevo juego</legend>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label>Fase de grupo</label>
+          <ng-select [items]="listaFase" bindLabel="nombre" bindValue="id" placeholder="Fase de grupo" name="age" [dropdownPosition]="'down'">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group">
+          <label>Equipo A</label>
+          <ng-select [items]="listaEquipoA" [multiple]="false" bindLabel="nombre" id="equipoA" name="equipoA" [dropdownPosition]="'down'"
+            (change)="cambioEquipoA($event)" placeholder="Equipo A">
+            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+              <span class="ng-value-label">
+                <img [src]="item.banderaUrl" width="20px" height="15px"> {{item.nombre}}</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              <img [src]="item.banderaUrl" width="30px" height="25px"> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-2">
+        <label>
+          <br>
+        </label>
+        <div class="form-group text-center" style="font-size: 30px">
+          VS
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-group">
+          <label>Equipo B</label>
+          <ng-select [items]="listaEquipoB" [multiple]="false" bindLabel="nombre" id="equipoB" name="equipoA" [dropdownPosition]="'down'"
+            (change)="cambioEquipoB($event)" placeholder="Equipo B">
+            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+              <span class="ng-value-label">
+                <img [src]="item.banderaUrl" width="20px" height="15px"> {{item.nombre}}</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              <img [src]="item.banderaUrl" width="30px" height="25px"> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group text-center">
+    <button class="btn btn-success">Registrar Programacion</button>
+    <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/equipos']">Cancelar</button>
+  </div>
+</form>

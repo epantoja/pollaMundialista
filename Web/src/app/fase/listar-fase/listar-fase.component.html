@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['/administrar/grupoEquipos/nuevoGrupoEquipo']">Nuevo
+                <a class="nav-link" [routerLink]="['/administrar/fases/nuevaFase']">Nuevo
                     <i class="fa fa-plus"></i>
                 </a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Buscar Grupo Equipo" (input)="buscarGrupoEquipo($event.target.value)">
+            <input class="form-control mr-sm-2" type="text" placeholder="Buscar Grupo Equipo" (input)="buscarFase($event.target.value)">
         </form>
     </div>
 </nav>
@@ -32,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let grupoEquipo of listaGrupoEquipo">
+            <tr *ngFor="let grupoEquipo of listaFase">
                 <td>{{grupoEquipo.nombre}}</td>
                 <td>
                     <div [ngStyle]="{'background-color': grupoEquipo.color}">
@@ -44,12 +44,12 @@
                 <td>
                     <div class="row">
                         <div class="col-6">
-                            <a (click)="false" [routerLink]="['/administrar/grupoEquipos/editarGrupoEquipo/' + grupoEquipo.id]">
+                            <a (click)="false" [routerLink]="['/administrar/fases/editarFase/' + grupoEquipo.id]">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </div>
                         <div class="col-6">
-                            <a href="javascript:;" (click)="eliminarGrupoEquipo(grupoEquipo.id)">
+                            <a href="javascript:;" (click)="eliminarFase(grupoEquipo.id)">
                                 <i class="fa fa-trash-alt"></i>
                             </a>
                         </div>

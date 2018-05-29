@@ -100,12 +100,24 @@
         </div>
 
         <div class="row">
-          <div class="col-12">
+          <div class="col-6">
             <div class="form-group">
               <label for="">Puntos</label>
               <input type="text" class="form-control" formControlName="puntos" placeholder="Puntos">
               <small class="help-blok error-form" *ngIf="actualizaEquipo.get('puntos').hasError('required') &&  actualizaEquipo.get('puntos').touched">
                 El puntaje es requerido
+              </small>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Grupo</label>
+              <ng-select formControlName="Grupo" [items]="listaGrupo" bindLabel="nombre" bindValue="nombre" placeholder="Fase de grupo"
+                [dropdownPosition]="'down'">
+              </ng-select>
+              <small class="help-blok error-form" *ngIf="actualizaEquipo.get('Grupo').hasError('required') &&  actualizaEquipo.get('Grupo').touched">
+                El grupo es requerido
               </small>
             </div>
           </div>

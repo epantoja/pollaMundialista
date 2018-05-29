@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Api.Models {
-    public class ResultadosJuego {
+    public class Apuesta {
         public int Id { get; set; }
         public Usuario Usuario { get; set; }
         public int UsuarioId { get; set; }

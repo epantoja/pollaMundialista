@@ -1,8 +1,8 @@
-<form #frmRegistrarGrupoEquipo="ngForm" class="form-signin animated fadeIn" [formGroup]="registroGrupoEquipo" id="frmRegistrarGrupoEquipo">
+<form #frmRegistrarFase="ngForm" class="form-signin animated fadeIn" [formGroup]="registroFase" id="frmRegistrarFase">
   <div class="form-group">
     <label for="formGroupExampleInput">Nombre</label>
     <input type="text" class="form-control" formControlName="Nombre" placeholder="Nombre">
-    <small class="help-blok error-form" *ngIf="registroGrupoEquipo.get('Nombre').hasError('required') &&  registroGrupoEquipo.get('Nombre').touched">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Nombre').hasError('required') &&  registroFase.get('Nombre').touched">
       El nombre de la fase es requerido
     </small>
   </div>
@@ -10,14 +10,14 @@
     <label for="formGroupExampleInput">Color</label>
     <br>
     <input type="color" class="" formControlName="Color">
-    <small class="help-blok error-form" *ngIf="registroGrupoEquipo.get('Color').hasError('required') &&  registroGrupoEquipo.get('Color').touched">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Color').hasError('required') &&  registroFase.get('Color').touched">
       El color es requerido
     </small>
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput">Orden</label>
     <input type="text" class="form-control" formControlName="Orden" placeholder="Orden">
-    <small class="help-blok error-form" *ngIf="registroGrupoEquipo.get('Orden').hasError('required') &&  registroGrupoEquipo.get('Orden').touched">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Orden').hasError('required') &&  registroFase.get('Orden').touched">
       El orden es requerido
     </small>
   </div>
@@ -26,14 +26,14 @@
       <input type="checkbox" class="custom-control-input" formControlName="Estado" id="Estado">
       <label class="custom-control-label" for="Estado">Estado</label>
     </div>
-    <small class="help-blok error-form" *ngIf="registroGrupoEquipo.get('Estado').hasError('required') &&  registroGrupoEquipo.get('Estado').touched">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Estado').hasError('required') &&  registroFase.get('Estado').touched">
       El estado es requerido
     </small>
   </div>
 
   <div class="form-group text-center">
-    <button [disabled]="!registroGrupoEquipo.dirty" class="btn btn-success" (click)="actualizarGrupo()">Registrar</button>
-    <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/grupoEquipos']">Cancelar</button>
+    <button [disabled]="!registroFase.dirty" class="btn btn-success" (click)="actualizarGrupo()">Registrar</button>
+    <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/fases']">Cancelar</button>
 
   </div>
 </form>

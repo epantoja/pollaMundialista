@@ -30,6 +30,10 @@ namespace Api.Models {
         public int GolesEnContra { get; set; }
         public int DiferenciaGoles { get; set; }
         public int Puntos { get; set; }
+
+        [Required]
+        [StringLength (150)]
+        public string Grupo { get; set; }
         public bool Estado { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+<form #frmRegistrarFase="ngForm" class="form-signin animated fadeIn" [formGroup]="registroFase" id="frmRegistrarFase">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Nombre</label>
+    <input type="text" class="form-control" formControlName="Nombre" placeholder="Nombre">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Nombre').hasError('required') &&  registroFase.get('Nombre').touched">
+      El nombre de la fase es requerido
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Color</label>
+    <br>
+    <input type="color" class="" formControlName="Color">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Color').hasError('required') &&  registroFase.get('Color').touched">
+      El color es requerido
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Orden</label>
+    <input type="text" class="form-control" formControlName="Orden" placeholder="Orden">
+    <small class="help-blok error-form" *ngIf="registroFase.get('Orden').hasError('required') &&  registroFase.get('Orden').touched">
+      El orden es requerido
+    </small>
+  </div>
+  <div class="form-group text-center">
+    <button [disabled]="!registroFase.dirty" class="btn btn-success" (click)="registrarGrupo()">Registrar</button>
+    <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/fases']">Cancelar</button>
+  </div>
+</form>

@@ -130,6 +130,7 @@ namespace Api.Controllers {
             obtenerEquipo.GolesEnContra = actualizarEquipoDto.GolesEnContra;
             obtenerEquipo.DiferenciaGoles = actualizarEquipoDto.DiferenciaGoles;
             obtenerEquipo.Puntos = actualizarEquipoDto.Puntos;
+            obtenerEquipo.Grupo = actualizarEquipoDto.Grupo;
 
             var resultEquipo = await _equipo.ActualizarEquipo (obtenerEquipo);
 

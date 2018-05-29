@@ -1,35 +1,35 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators, NgForm } from "@angular/forms";
-import { GrupoEquipoService } from "../../../servicios/grupoEquipo.service";
+import { FaseService } from "../../../servicios/fase.service";
 import { MensajeService } from "../../../servicios/mensaje.service";
-import { GrupoEquipo } from "../../../model/GrupoEquipo";
+import { Fase } from "../../../model/Fase";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: "app-editar-grupoEquipo",
-  templateUrl: "./editar-grupoEquipo.component.html",
-  styleUrls: ["./editar-grupoEquipo.component.css"]
+  selector: "app-editar-fase",
+  templateUrl: "./editar-fase.component.html",
+  styleUrls: ["./editar-fase.component.css"]
 })
-export class EditarGrupoEquipoComponent implements OnInit {
-  registroGrupoEquipo: FormGroup;
-  equipoModel: GrupoEquipo = {} as GrupoEquipo;
-  @ViewChild("frmRegistrarGrupoEquipo") frmRegistrarGrupoEquipo: NgForm;
-  idGrupoEquipo: number;
+export class EditarFaseComponent implements OnInit {
+  registroFase: FormGroup;
+  equipoModel: Fase = {} as Fase;
+  @ViewChild("frmRegistrarFase") frmRegistrarFase: NgForm;
+  idFase: number;
 
   constructor(
     private fb: FormBuilder,
-    private grupoEquipoService: GrupoEquipoService,
+    private faseService: FaseService,
     private mensajeService: MensajeService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.inicializarFormulario();
-    this.cargarGrupoEquipo();
+    this.cargarFase();
   }
 
   inicializarFormulario() {
-    this.registroGrupoEquipo = this.fb.group({
+    this.registroFase = this.fb.group({
       Nombre: [this.equipoModel.nombre, Validators.required],
       Color: [this.equipoModel.color, Validators.required],
       Orden: [this.equipoModel.orden, Validators.required],
@@ -37,11 +37,11 @@ export class EditarGrupoEquipoComponent implements OnInit {
     });
   }
 
-  cargarGrupoEquipo() {
-    this.idGrupoEquipo = this.route.snapshot.params["id"];
-    this.grupoEquipoService.obtener(this.idGrupoEquipo).subscribe(
-      grupoEquipo => {
-        this.equipoModel = grupoEquipo;
+  cargarFase() {
+    this.idFase = this.route.snapshot.params["id"];
+    this.faseService.obtener(this.idFase).subscribe(
+      fase => {
+        this.equipoModel = fase;
       },
       error => {
         this.mensajeService.error("Ocurrio un error interno");
@@ -53,14 +53,14 @@ export class EditarGrupoEquipoComponent implements OnInit {
   }
 
   actualizarGrupo() {
-    if (this.registroGrupoEquipo.valid) {
-      this.equipoModel = Object.assign({}, this.registroGrupoEquipo.value);
+    if (this.registroFase.valid) {
+      this.equipoModel = Object.assign({}, this.registroFase.value);
 
-      this.grupoEquipoService
-        .actualizar(this.idGrupoEquipo, this.equipoModel)
+      this.faseService
+        .actualizar(this.idFase, this.equipoModel)
         .subscribe(
           next => {
-            this.frmRegistrarGrupoEquipo.reset(this.equipoModel);
+            this.frmRegistrarFase.reset(this.equipoModel);
             this.mensajeService.success("Actualizado correctamente");
           },
           error => {

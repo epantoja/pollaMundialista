@@ -5,56 +5,56 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 import { Observable } from "rxjs/Observable";
 import { environment } from "../environments/environment";
-import { GrupoEquipo } from "../model/GrupoEquipo";
+import { Fase } from "../model/Fase";
 import { AuthHttp } from "angular2-jwt";
 
 @Injectable()
-export class GrupoEquipoService {
-  baseUrl = environment.apiUrl + "GrupoEquipo/";
+export class FaseService {
+  baseUrl = environment.apiUrl + "Fase/";
 
   constructor(private authHttp: AuthHttp) {}
 
-  listar(): Observable<GrupoEquipo[]> {
+  listar(): Observable<Fase[]> {
     return this.authHttp
       .get(this.baseUrl + "Listar")
-      .map(response => <GrupoEquipo[]>response.json())
+      .map(response => <Fase[]>response.json())
       .catch(this.handlerError);
   }
 
-  listarTodos(): Observable<GrupoEquipo[]> {
+  listarTodos(): Observable<Fase[]> {
     return this.authHttp
       .get(this.baseUrl + "ListarTodos")
-      .map(response => <GrupoEquipo[]>response.json())
+      .map(response => <Fase[]>response.json())
       .catch(this.handlerError);
   }
 
-  guardar(grupoEquipoModel: GrupoEquipo) {
+  guardar(grupoEquipoModel: Fase) {
     return this.authHttp
       .post(this.baseUrl + "Guardar", grupoEquipoModel)
       .catch(this.handlerError);
   }
 
-  eliminar(id: number): Observable<GrupoEquipo[]> {
+  eliminar(id: number): Observable<Fase[]> {
     return this.authHttp
       .get(this.baseUrl + "Eliminar/" + id)
-      .map(response => <GrupoEquipo[]>response.json())
+      .map(response => <Fase[]>response.json())
       .catch(this.handlerError);
   }
 
-  obtener(id: number): Observable<GrupoEquipo> {
+  obtener(id: number): Observable<Fase> {
     return this.authHttp
       .get(this.baseUrl + "Obtener/" + id)
-      .map(response => <GrupoEquipo>response.json())
+      .map(response => <Fase>response.json())
       .catch(this.handlerError);
   }
 
   actualizar(
     id: number,
-    grupoEquipoModel: GrupoEquipo
-  ): Observable<GrupoEquipo> {
+    grupoEquipoModel: Fase
+  ): Observable<Fase> {
     return this.authHttp
       .put(this.baseUrl + "Actualizar/" + id, grupoEquipoModel)
-      .map(response => <GrupoEquipo>response.json())
+      .map(response => <Fase>response.json())
       .catch(this.handlerError);
   }
 

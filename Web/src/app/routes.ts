@@ -1,7 +1,7 @@
-import { EditarGrupoEquipoComponent } from './grupoEquipo/editar-grupoEquipo/editar-grupoEquipo.component';
-import { ListarGrupoEquipoResolver } from "./../resolvers/listar-grupoEquipo.resolver";
+import { EditarFaseComponent } from './fase/editar-fase/editar-fase.component';
+import { ListarFaseResolver } from "./../resolvers/listar-fase.resolver";
 import { CambiosPendientesPerfil } from "./../guards/cambiosPendientesPerfil.guard";
-import { ListarGrupoEquipoComponent } from "./grupoEquipo/listar-grupoEquipo/listar-grupoEquipo.component";
+import { ListarFaseComponent } from "./fase/listar-fase/listar-fase.component";
 import { EditarEquipoResolver } from "./../resolvers/editar-equipo.resolver";
 import { EditarEquipoComponent } from "./equipo/editar-equipo/editar-equipo.component";
 import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.component";
@@ -20,7 +20,7 @@ import { RegistrarComponent } from "./registrar/registrar.component";
 import { AuthGuard } from "../guards/auth.guard";
 import { AuthAdminGuard } from "../guards/authAdmin.guard";
 import { ListarEquipoResolver } from "../resolvers/listar-equipo.resolver";
-import { NuevoGrupoEquipoComponent } from "./grupoEquipo/nuevo-grupoEquipo/nuevo-grupoEquipo.component";
+import { NuevoFaseComponent } from "./fase/nuevo-fase/nuevo-fase.component";
 
 export const appRoutes: Routes = [
   {
@@ -42,17 +42,17 @@ export const appRoutes: Routes = [
         component: EditarEquipoComponent
       },
       {
-        path: "administrar/grupoEquipos",
-        resolve: { listaGrupoEquipo: ListarGrupoEquipoResolver },
-        component: ListarGrupoEquipoComponent
+        path: "administrar/fases",
+        resolve: { listaFase: ListarFaseResolver },
+        component: ListarFaseComponent
       },
       {
-        path: "administrar/grupoEquipos/nuevoGrupoEquipo",
-        component: NuevoGrupoEquipoComponent
+        path: "administrar/fases/nuevaFase",
+        component: NuevoFaseComponent
       },
       {
-        path: "administrar/grupoEquipos/editarGrupoEquipo/:id",
-        component: EditarGrupoEquipoComponent
+        path: "administrar/fases/editarFase/:id",
+        component: EditarFaseComponent
       },
       { path: "administrar/juegos", component: JuegoComponent },
       { path: "administrar/usuarios", component: UsuarioComponent },

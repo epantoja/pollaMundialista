@@ -1,3 +1,4 @@
+import { GrupoService } from "./../../../servicios/grupo.service";
 import { MensajeService } from "./../../../servicios/mensaje.service";
 import { EquipoService } from "./../../../servicios/equipo.service";
 import { Equipo } from "./../../../model/Equipo";
@@ -18,6 +19,7 @@ export class NuevoEquipoComponent implements OnInit {
   localUrl: string;
   equipoModel: Equipo = {} as Equipo;
   @ViewChild("frmRegistrarEquipo") frmRegistrarEquipo: NgForm;
+  listaGrupo: any[] = [] as any[];
 
   uploader: FileUploader = new FileUploader({
     url: URL,
@@ -27,12 +29,25 @@ export class NuevoEquipoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private equipoService: EquipoService,
-    public mensajeService: MensajeService
+    private mensajeService: MensajeService,
+    private grupoService: GrupoService
   ) {}
 
   ngOnInit() {
     this.inicializarFormulario();
     this.localUrl = "./assets/img/imgFondoBandera.jpg";
+    this.cargarGrupo();
+  }
+
+  cargarGrupo() {
+    this.grupoService.listarGrupo().subscribe(
+      grupo => {
+        this.listaGrupo = grupo;
+      },
+      error => {
+        this.mensajeService.error("Ocurrio un error interno");
+      }
+    );
   }
 
   inicializarFormulario() {
@@ -45,7 +60,8 @@ export class NuevoEquipoComponent implements OnInit {
           Validators.maxLength(150)
         ]
       ],
-      File: ["", Validators.required]
+      File: ["", Validators.required],
+      Grupo: ["", Validators.required]
     });
   }
 

@@ -8,88 +8,88 @@ using Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.BL {
-    public class GrupoEquipoBl : IGrupoEquipo {
+    public class FaseBl : IFase {
         private readonly DataContext _context;
 
-        public GrupoEquipoBl (DataContext context) {
+        public FaseBl (DataContext context) {
             _context = context;
         }
 
-        public async Task<GrupoEquipo> ActualizarGrupoEquipo (GrupoEquipo grupoEquipo) {
+        public async Task<Fase> ActualizarFase (Fase fase) {
             try {
-                _context.GrupoEquipo.Update (grupoEquipo);
+                _context.Fase.Update (fase);
                 await _context.SaveChangesAsync ();
-                return grupoEquipo;
+                return fase;
 
             } catch (Exception) {
                 throw new Exception ("Ocurrio un error interno, por favor comunicare con el administrador");
             }
         }
 
-        public Task<GrupoEquipo> BuscarGrupoEquipo (GrupoEquipo grupoEquipo) {
+        public Task<Fase> BuscarFase (Fase fase) {
             throw new System.NotImplementedException ();
         }
 
-        public async Task<GrupoEquipo> EliminarGrupoEquipo (GrupoEquipo grupoEquipo) {
+        public async Task<Fase> EliminarFase (Fase fase) {
             try {
-                var detalleGrupoEquipo = await _context.GrupoEquipo
-                    .FirstOrDefaultAsync (x => x.Id == grupoEquipo.Id);
+                var detalleFase = await _context.Fase
+                    .FirstOrDefaultAsync (x => x.Id == fase.Id);
 
-                detalleGrupoEquipo.Estado = false;
+                detalleFase.Estado = false;
 
-                _context.GrupoEquipo.Update (detalleGrupoEquipo);
+                _context.Fase.Update (detalleFase);
 
                 await _context.SaveChangesAsync ();
 
-                return detalleGrupoEquipo;
+                return detalleFase;
 
             } catch (Exception) {
                 throw new Exception ("Ocurrio un error interno, por favor comunicare con el administrador");
             }
         }
 
-        public async Task<GrupoEquipo> GuardarGrupoEquipo (GrupoEquipo grupoEquipo) {
+        public async Task<Fase> GuardarFase (Fase fase) {
             try {
-                await _context.GrupoEquipo.AddAsync (grupoEquipo);
+                await _context.Fase.AddAsync (fase);
                 await _context.SaveChangesAsync ();
-                return grupoEquipo;
+                return fase;
 
             } catch (Exception) {
                 throw new Exception ("Ocurrio un error interno, por favor comunicare con el administrador");
             }
         }
 
-        public async Task<List<GrupoEquipo>> ListarGrupoEquipoActivos () {
+        public async Task<List<Fase>> ListarFaseActivos () {
             try {
-                var listaGrupoEquipo = await _context.GrupoEquipo
+                var listaFase = await _context.Fase
                     .OrderBy (x => x.Orden)
                     .Where (x => x.Estado == true)
                     .ToListAsync ();
-                return listaGrupoEquipo;
+                return listaFase;
 
             } catch (Exception) {
                 throw new Exception ("Ocurrio un error interno, por favor comunicare con el administrador");
             }
         }
 
-        public async Task<List<GrupoEquipo>> ListarGrupoEquipoTodos () {
+        public async Task<List<Fase>> ListarFaseTodos () {
             try {
-                var listaGrupoEquipo = await _context.GrupoEquipo
+                var listaFase = await _context.Fase
                     .OrderBy (x => x.Orden)
                     .ToListAsync ();
-                return listaGrupoEquipo;
+                return listaFase;
 
             } catch (Exception) {
                 throw new Exception ("Ocurrio un error interno, por favor comunicare con el administrador");
             }
         }
 
-        public async Task<GrupoEquipo> ObtenerGrupoEquipo (GrupoEquipo grupoEquipo) {
+        public async Task<Fase> ObtenerFase (Fase fase) {
             try {
-                var detalleGrupoEquipo = await _context.GrupoEquipo
-                    .FirstOrDefaultAsync (x => x.Id == grupoEquipo.Id);
+                var detalleFase = await _context.Fase
+                    .FirstOrDefaultAsync (x => x.Id == fase.Id);
 
-                return detalleGrupoEquipo;
+                return detalleFase;
 
             } catch (Exception) {
                 throw new Exception ("Ocurrio un error interno, por favor comunicare con el administrador");

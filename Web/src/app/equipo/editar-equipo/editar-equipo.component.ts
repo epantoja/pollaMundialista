@@ -6,6 +6,7 @@ import { MensajeService } from "../../../servicios/mensaje.service";
 import { FileUploader } from "ng2-file-upload";
 import { environment } from "../../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
+import { GrupoService } from "../../../servicios/grupo.service";
 
 @Component({
   selector: "app-editar-equipo",
@@ -18,18 +19,32 @@ export class EditarEquipoComponent implements OnInit {
   equipoModel: ActualizarEquipo = {} as ActualizarEquipo;
   @ViewChild("frmActualizaEquipo") frmActualizaEquipo: NgForm;
   idEquipo: number;
+  listaGrupo: any[] = [] as any[];
 
   constructor(
     private fb: FormBuilder,
     private equipoService: EquipoService,
     public mensajeService: MensajeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private grupoService: GrupoService
   ) {}
 
   ngOnInit() {
     this.obtnerEquipo();
     this.localUrl = "./assets/img/imgFondoBandera.jpg";
     this.inicializarFormulario();
+    this.cargarGrupo();
+  }
+
+  cargarGrupo() {
+    this.grupoService.listarGrupo().subscribe(
+      grupo => {
+        this.listaGrupo = grupo;
+      },
+      error => {
+        this.mensajeService.error("Ocurrio un error interno");
+      }
+    );
   }
 
   obtnerEquipo() {
@@ -72,11 +87,13 @@ export class EditarEquipoComponent implements OnInit {
       golesAFavor: [this.equipoModel.golesAFavor, Validators.required],
       golesEnContra: [this.equipoModel.golesEnContra, Validators.required],
       diferenciaGoles: [this.equipoModel.diferenciaGoles, Validators.required],
-      puntos: [this.equipoModel.puntos, Validators.required]
+      puntos: [this.equipoModel.puntos, Validators.required],
+      Grupo: [this.equipoModel.grupo, Validators.required]
     });
   }
 
   ActualizarEquipo() {
+    debugger;
     if (this.actualizaEquipo.valid) {
       this.equipoModel = Object.assign({}, this.actualizaEquipo.value);
 

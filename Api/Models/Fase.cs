@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Api.Models {
-    public class GrupoEquipo {
-        public GrupoEquipo () {
+    public class Fase {
+        public Fase () {
             Estado = true;
         }
         public int Id { get; set; }

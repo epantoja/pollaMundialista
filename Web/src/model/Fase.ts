@@ -1,4 +1,4 @@
-export interface GrupoEquipo {
+export interface Fase {
   id: number;
   nombre: string;
   color: string;

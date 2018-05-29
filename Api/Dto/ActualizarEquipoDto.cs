@@ -30,5 +30,9 @@ namespace Api.Dto {
         [Required (ErrorMessage = "El campo Puntos es requerido")]
         public int Puntos { get; set; }
 
+        [Required (ErrorMessage = "El campo Grupo es requerido")]
+        [StringLength (150, MinimumLength = 4, ErrorMessage = "El Grupo debe ser entre 4 y 150 caracteres")]
+        public string Grupo { get; set; }
+
     }
 }

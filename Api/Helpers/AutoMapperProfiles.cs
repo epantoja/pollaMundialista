@@ -29,7 +29,7 @@ namespace Api.Helpers {
 
             CreateMap<Equipo, EquipoListaDto> ();
 
-            CreateMap<GrupoEquipo, GrupoEquipoListaDto> ();
+            CreateMap<Fase, FaseListaDto> ();
         }
     }
 }

@@ -4,5 +4,6 @@ namespace Api.Dto {
         public string Nombre { get; set; }
         public string BanderaUrl { get; set; }
         public string PublicId { get; set; }
+        public string Grupo { get; set; }
     }
 }
