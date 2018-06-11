@@ -1,0 +1,13 @@
+.hora {
+  font-size: 70%;
+}
+
+@media (max-width: 768px) {
+  .hora {
+    font-size: 60%;
+  }
+}
+
+.card-link .fa {
+  color: #3399F3;
+}

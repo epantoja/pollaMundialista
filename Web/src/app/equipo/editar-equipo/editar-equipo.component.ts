@@ -93,7 +93,6 @@ export class EditarEquipoComponent implements OnInit {
   }
 
   ActualizarEquipo() {
-    debugger;
     if (this.actualizaEquipo.valid) {
       this.equipoModel = Object.assign({}, this.actualizaEquipo.value);
 

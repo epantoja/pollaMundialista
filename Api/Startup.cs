@@ -39,6 +39,7 @@ namespace Api {
             services.AddScoped<IGrupoUsuario, GrupoUsuarioBl> ();
             services.AddScoped<IEquipo, EquipoBl> ();
             services.AddScoped<IFase, FaseBl> ();
+            services.AddScoped<IProgramacionJuego, ProgramacionJuegoBl> ();
             services.AddMvc ();
             services.AddMvc ().AddJsonOptions (opt => {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

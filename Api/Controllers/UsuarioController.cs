@@ -31,8 +31,8 @@ namespace Api.Controllers {
         [HttpPost ("register")]
         public async Task<IActionResult> Register ([FromBody] UsuarioRegisterDto usuarioRegisterDto) {
 
-            if (usuarioRegisterDto == null)
-                ModelState.AddModelError ("Usuario", "Falta el usuario");
+            if (!ModelState.IsValid)
+                return BadRequest (ModelState);
 
             var usuarioRegistro = new Usuario {
                 CodUsuario = usuarioRegisterDto.CodUsuario,
@@ -49,17 +49,11 @@ namespace Api.Controllers {
             if (usuarioRegisterDto.GrupoUsuarioId == 1)
                 ModelState.AddModelError ("GrupoUsuarioId", "No de puede crear el usuario con este grupo");
 
-            if (usuarioRegisterDto.GrupoUsuarioId == 0)
-                ModelState.AddModelError ("GrupoUsuarioId", "No de puede crear el usuario con este grupo");
-
             if (await _grupoUsuario.ObtenerGrupoUsuario (new GrupoUsuario { Id = usuarioRegisterDto.GrupoUsuarioId }) == null)
                 ModelState.AddModelError ("GrupoUsuarioId", "El Grupo no existe");
 
             if (await _usuario.VerificarUsuario (usuarioRegistro) != null)
                 ModelState.AddModelError ("CodLogin", "Usuario ya existe");
-
-            if (!ModelState.IsValid)
-                return BadRequest (ModelState);
 
             var userCreate = await _usuario.GuardarUsuario (usuarioRegisterDto.Contrasena, usuarioRegistro, usuarioGrupoUsuario);
 
@@ -68,6 +62,9 @@ namespace Api.Controllers {
 
         [HttpPost ("login")]
         public async Task<IActionResult> Login ([FromBody] UsuarioLoginDto usuarioLoginDto) {
+
+            if (!ModelState.IsValid)
+                return BadRequest (ModelState);
 
             if (usuarioLoginDto == null)
                 return Unauthorized ();
@@ -105,14 +102,11 @@ namespace Api.Controllers {
         }
 
         [Authorize]
-        [HttpPost ("Obtener")]
-        public async Task<IActionResult> ObtenerUsuario ([FromBody] UsuarioDto usuarioDto) {
-
-            if (usuarioDto == null)
-                ModelState.AddModelError ("Usuario", "Falta el usuario");
+        [HttpGet ("Obtener/{Id}")]
+        public async Task<IActionResult> ObtenerUsuario (int Id) {
 
             var usuario = new Usuario {
-                Id = usuarioDto.Id
+                Id = Id
             };
 
             var consulGrupoUsuario = new GrupoUsuario {
@@ -156,11 +150,11 @@ namespace Api.Controllers {
         [HttpPut ("ActualizarClave/{id}")]
         public async Task<IActionResult> ActualizarClave (int id, [FromBody] UsuarioClaveDto UsuarioClaveDto) {
 
-            if (UsuarioClaveDto.ContrasenaNueva != UsuarioClaveDto.ConfirmarContrasena)
-                ModelState.AddModelError ("ContrasenaNueva", "Las contrasenas no son iguales");
-
             if (!ModelState.IsValid)
                 return BadRequest (ModelState);
+
+            if (UsuarioClaveDto.ContrasenaNueva != UsuarioClaveDto.ConfirmarContrasena)
+                ModelState.AddModelError ("ContrasenaNueva", "Las contrasenas no son iguales");
 
             var currentUserId = int.Parse (User.FindFirst (ClaimTypes.NameIdentifier).Value);
 

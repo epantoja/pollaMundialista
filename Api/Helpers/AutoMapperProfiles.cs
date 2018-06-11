@@ -30,6 +30,10 @@ namespace Api.Helpers {
             CreateMap<Equipo, EquipoListaDto> ();
 
             CreateMap<Fase, FaseListaDto> ();
+
+            CreateMap<ProgramacionJuego, ProgramacionJuegoListaDto> ();
+
+            CreateMap<ProgramacionJuegoRegistroDto, ProgramacionJuego> ();
         }
     }
 }

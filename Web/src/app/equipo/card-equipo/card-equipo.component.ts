@@ -19,7 +19,7 @@ export class CardEquipoComponent implements OnInit {
 
   ngOnInit() {}
 
-  eliminarEquipo(id: number) {
+  eliminarEquipo(id) {
     this.mensajeService.confirm(
       "Esta seguro que quiere eliminar el equipo",
       () => {

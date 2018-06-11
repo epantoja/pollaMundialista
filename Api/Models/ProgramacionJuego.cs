@@ -4,6 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Models {
     public class ProgramacionJuego {
+        public ProgramacionJuego () {
+            MarcadorA = 0;
+            MarcadorB = 0;
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -24,7 +29,7 @@ namespace Api.Models {
         public int MarcadorB { get; set; }
 
         public Fase Fase { get; set; }
-        public int GrupoEquipoId { get; set; }
+        public int FaseId { get; set; }
 
         [Required]
         public int Orden { get; set; }

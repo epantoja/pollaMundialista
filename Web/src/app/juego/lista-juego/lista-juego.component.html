@@ -1,0 +1,44 @@
+<nav class=" animated fadeIn  navbar navbar-expand-lg navbar-light bg-light">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/administrar/juegos/nuevoJuego']">Nuevo
+          <i class="fa fa-plus"></i>
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar Juego" (input)="buscarJuego($event.target.value)">
+    </form>
+  </div>
+</nav>
+<br>
+<div id="accordion" class="animated fadeIn ">
+  <div *ngFor="let fase of listaFase" class="card">
+    <div [ngStyle]="{'background-color': fase.color}" class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#' + fase.id" aria-expanded="false" aria-controls="collapseOne">
+          {{fase.nombre}}
+        </button>
+      </h5>
+    </div>
+
+    <div id="{{fase.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <div class="row equal ">
+          <div *ngFor="let juego of listarJuegos(fase.id)" class="col-lg-6 col-md-12">
+            <app-card-juego [programacionJuego]="juego"></app-card-juego>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

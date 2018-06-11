@@ -1,3 +1,6 @@
+import { CardJuegoComponent } from "./juego/card-juego/card-juego.component";
+import { PorgramacionJuegoService } from "./../servicios/porgramacionJuego.service";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { GrupoService } from "./../servicios/grupo.service";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { EditarFaseComponent } from "./fase/editar-fase/editar-fase.component";
@@ -32,7 +35,7 @@ import { RegistrarComponent } from "./registrar/registrar.component";
 
 import { ModalModule, TabsModule } from "ngx-bootstrap";
 import { BsDropdownModule } from "ngx-bootstrap";
-import { JuegoComponent } from "./juego/juego.component";
+import { ListaJuegoComponent } from "./juego/lista-juego/lista-juego.component";
 import { UsuarioComponent } from "./usuario/usuario.component";
 import { GrupoUsuarioComponent } from "./grupoUsuario/grupoUsuario.component";
 import { AuthGuard } from "../guards/auth.guard";
@@ -42,6 +45,16 @@ import { ListarEquipoResolver } from "../resolvers/listar-equipo.resolver";
 import { NuevoEquipoComponent } from "./equipo/nuevo-equipo/nuevo-equipo.component";
 import { NuevoFaseComponent } from "./fase/nuevo-fase/nuevo-fase.component";
 import { ListarFaseResolver } from "../resolvers/listar-fase.resolver";
+
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+  OwlDateTimeIntl
+} from "ng-pick-datetime";
+import { OWL_DATE_TIME_LOCALE } from "ng-pick-datetime";
+import { DefaultIntl } from "../datepicker/DefaultIntl";
+import { NuevoJuegoComponent } from "./juego/nuevo-juego/nuevo-juego.component";
+
 
 @NgModule({
   declarations: [
@@ -53,16 +66,19 @@ import { ListarFaseResolver } from "../resolvers/listar-fase.resolver";
     ListarEquipoComponent,
     ListarFaseComponent,
     NuevoFaseComponent,
-    JuegoComponent,
+    ListaJuegoComponent,
     UsuarioComponent,
     GrupoUsuarioComponent,
     PerfilComponent,
     CardEquipoComponent,
     NuevoEquipoComponent,
     EditarEquipoComponent,
-    EditarFaseComponent
+    EditarFaseComponent,
+    NuevoJuegoComponent,
+    CardJuegoComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
     FormsModule,
@@ -73,7 +89,9 @@ import { ListarFaseResolver } from "../resolvers/listar-fase.resolver";
     TabsModule.forRoot(),
     ReactiveFormsModule,
     FileUploadModule,
-    NgSelectModule
+    NgSelectModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [
     GrupoUsuarioService,
@@ -89,7 +107,10 @@ import { ListarFaseResolver } from "../resolvers/listar-fase.resolver";
     CambiosPendientesPerfil,
     FaseService,
     ListarFaseResolver,
-    GrupoService
+    PorgramacionJuegoService,
+    GrupoService,
+    { provide: OWL_DATE_TIME_LOCALE, useValue: "es" },
+    { provide: OwlDateTimeIntl, useClass: DefaultIntl }
   ],
   bootstrap: [AppComponent]
 })

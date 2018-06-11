@@ -1,4 +1,5 @@
-import { EditarFaseComponent } from './fase/editar-fase/editar-fase.component';
+import { NuevoJuegoComponent } from "./juego/nuevo-juego/nuevo-juego.component";
+import { EditarFaseComponent } from "./fase/editar-fase/editar-fase.component";
 import { ListarFaseResolver } from "./../resolvers/listar-fase.resolver";
 import { CambiosPendientesPerfil } from "./../guards/cambiosPendientesPerfil.guard";
 import { ListarFaseComponent } from "./fase/listar-fase/listar-fase.component";
@@ -11,7 +12,7 @@ import { PerfilComponent } from "./perfil/perfil.component";
 import { LoginGuard } from "./../guards/login.guard";
 import { GrupoUsuarioComponent } from "./grupoUsuario/grupoUsuario.component";
 import { UsuarioComponent } from "./usuario/usuario.component";
-import { JuegoComponent } from "./juego/juego.component";
+import { ListaJuegoComponent } from "./juego/lista-juego/lista-juego.component";
 import { LoginComponent } from "./login/login.component";
 
 import { Routes } from "@angular/router";
@@ -54,7 +55,8 @@ export const appRoutes: Routes = [
         path: "administrar/fases/editarFase/:id",
         component: EditarFaseComponent
       },
-      { path: "administrar/juegos", component: JuegoComponent },
+      { path: "administrar/juegos", component: ListaJuegoComponent },
+      { path: "administrar/juegos/nuevoJuego", component: NuevoJuegoComponent },
       { path: "administrar/usuarios", component: UsuarioComponent },
       { path: "administrar/grupoUsuarios", component: GrupoUsuarioComponent }
     ]

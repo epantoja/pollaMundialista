@@ -1,17 +1,19 @@
 using System.ComponentModel.DataAnnotations;
+using Api.Helpers.CustomValidation;
 
 namespace Api.Dto {
     public class UsuarioLoginDto {
 
-        [Required (ErrorMessage = "El campo CodUsuario es requerido")]
-        [StringLength (15, MinimumLength = 4, ErrorMessage = "La CodUsuario debe ser entre 4 y 15 caracteres")]
+        [Required (ErrorMessage = "El campo {0} es requerido")]
+        [StringLength (15, MinimumLength = 4, ErrorMessage = "La {0} debe ser entre {2} y {1} caracteres")]
         public string CodUsuario { get; set; }
 
-        [Required (ErrorMessage = "El campo GrupoUsuarioId es requerido")]
+        [Required (ErrorMessage = "El campo {0} es requerido")]
+        [MayorCero (ErrorMessage = "El {0} debe ser mayor a cero")]
         public int GrupoUsuarioId { get; set; }
 
-        [Required (ErrorMessage = "El campo Contrasena es requerido")]
-        [StringLength (15, MinimumLength = 4, ErrorMessage = "La Contrasena debe ser entre 4 y 15 caracteres")]
+        [Required (ErrorMessage = "El campo {0} es requerido")]
+        [StringLength (15, MinimumLength = 4, ErrorMessage = "La {0} debe ser entre {2} y {1} caracteres")]
         public string Contrasena { get; set; }
     }
 }

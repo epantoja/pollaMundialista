@@ -15,11 +15,11 @@ namespace Api.BL {
             _context = context;
         }
 
-        public async Task<GrupoUsuario> GuardarGrupoUsuario (GrupoUsuario grupoUsuario) {
+        public Task<GrupoUsuario> GuardarGrupoUsuario (GrupoUsuario grupoUsuario) {
             throw new System.NotImplementedException ();
         }
 
-        public async Task<GrupoUsuario> ActualizarGrupoUsuario (GrupoUsuario grupoUsuario) {
+        public Task<GrupoUsuario> ActualizarGrupoUsuario (GrupoUsuario grupoUsuario) {
             throw new System.NotImplementedException ();
         }
 

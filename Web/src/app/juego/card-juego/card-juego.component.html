@@ -1,0 +1,29 @@
+<div class="card border-secondary">
+  <div class="card-header text-center">
+    <b>{{programacionJuego.equipoA.nombre}} VS {{programacionJuego.equipoB.nombre}}</b>
+    <br> {{programacionJuego.fechaJuego | date:"yyyy-MM-dd"}}
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col-5 text-center">
+          <img [src]="programacionJuego.equipoA.banderaUrl" width="80px" height="70px">
+        </div>
+        <div class="col-2 text-center hora">
+          {{programacionJuego.fechaJuego | date:"hh:mm a"}}
+        </div>
+        <div class="col-5 text-center">
+          <img [src]="programacionJuego.equipoB.banderaUrl" width="80px" height="70px">
+        </div>
+      </div>
+    </h4>
+    <div class="card-footer text-muted text-center">
+      <a (click)="editarJuego(programacionJuego.id)" class="card-link">
+        <i class="fa fa-edit"> Editar</i>
+      </a>
+      <a (click)="eliminarJuego(programacionJuego.id)" class="card-link">
+        <i class="fa fa-trash-alt"> Eliminar</i>
+      </a>
+    </div>
+  </div>
+</div>

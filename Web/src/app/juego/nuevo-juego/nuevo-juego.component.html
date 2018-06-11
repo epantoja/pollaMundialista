@@ -1,0 +1,91 @@
+<form [formGroup]="registroJuego" #frmRegistrarJuego="ngForm" class="form-signin animated fadeIn" id="frmRegistrarJuego">
+
+  <fieldset>
+    <legend>Nuevo juego</legend>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label>Fase de grupo</label>
+          <ng-select placeholder="Fase de grupo" formControlName="FaseId" [dropdownPosition]="'down'">
+            <ng-option *ngFor="let item of listaFase" [value]="item.id">{{item.nombre}}</ng-option>
+          </ng-select>
+          <small class="help-blok error-form" *ngIf="registroJuego.get('FaseId').hasError('required') &&  registroJuego.get('FaseId').touched">
+            La fase de grupo es requerido
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group">
+          <label>Equipo A</label>
+          <ng-select [items]="listaEquipoA" bindValue="id" [multiple]="false" bindLabel="nombre" formControlName="equipoAId" [dropdownPosition]="'down'"
+            (change)="cambioEquipoA($event)" placeholder="Equipo A">
+            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+              <span class="ng-value-label">
+                <img [src]="item.banderaUrl" width="20px" height="15px"> {{item.nombre}}</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              <img [src]="item.banderaUrl" width="30px" height="25px"> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+          <small class="help-blok error-form" *ngIf="registroJuego.get('equipoAId').hasError('required') &&  registroJuego.get('equipoAId').touched">
+            El equipo A es requerido
+          </small>
+        </div>
+      </div>
+      <div class="col-2">
+        <label>
+          <br>
+        </label>
+        <div class="form-group text-center" style="font-size: 30px">
+          VS
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-group">
+          <label>Equipo B</label>
+          <ng-select [items]="listaEquipoB" bindValue="id" [multiple]="false" bindLabel="nombre" formControlName="equipoBId" [dropdownPosition]="'down'"
+            (change)="cambioEquipoB($event)" placeholder="Equipo B">
+            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+              <span class="ng-value-label">
+                <img [src]="item.banderaUrl" width="20px" height="15px"> {{item.nombre}}</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              <img [src]="item.banderaUrl" width="30px" height="25px"> {{item.nombre}}
+            </ng-template>
+          </ng-select>
+          <small class="help-blok error-form" *ngIf="registroJuego.get('equipoBId').hasError('required') &&  registroJuego.get('equipoBId').touched">
+            El equipo B es requerido
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Fecha Juego</label>
+          <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" class="form-control" placeholder="Fecha Juego" formControlName="fechaJuego">
+          <owl-date-time [pickerMode]="'dialog'" #dt5></owl-date-time>
+          <small class="help-blok error-form" *ngIf="registroJuego.get('fechaJuego').hasError('required') &&  registroJuego.get('fechaJuego').touched">
+            La fecha de juego es requerido
+          </small>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Orden</label>
+          <input type="text" class="form-control" formControlName="Orden" placeholder="Orden">
+          <small class="help-blok error-form" *ngIf="registroJuego.get('Orden').hasError('required') &&  registroJuego.get('Orden').touched">
+            El orden es requerido
+          </small>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group text-center">
+    <button class="btn btn-success" (click)="registrarProgramacionJuego()">
+      Registrar Programacion</button>
+    <button class="btn btn-default" (click)="false" [routerLink]="['/administrar/juegos']">Cancelar</button>
+  </div>
+</form>

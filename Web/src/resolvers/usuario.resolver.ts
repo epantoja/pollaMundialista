@@ -15,10 +15,9 @@ export class UsuarioResolver implements Resolve<DetalleUsuario> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<DetalleUsuario> {
-    var usuario: DetalleUsuario = {} as DetalleUsuario;
-    usuario.id = this.usuarioService.decodedToken.nameid;
+    var id = this.usuarioService.decodedToken.nameid;
 
-    return this.usuarioService.obtenerUsuario(usuario).catch(error => {
+    return this.usuarioService.obtenerUsuario(id).catch(error => {
       this.mensajeService.error("Problema al recibir la data");
       this.router.navigate(["/home"]);
       return Observable.of(null);

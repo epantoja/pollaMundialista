@@ -131,11 +131,9 @@ namespace Api.Migrations
 
                     b.Property<int>("EquipoBId");
 
-                    b.Property<int?>("FaseId");
+                    b.Property<int>("FaseId");
 
                     b.Property<DateTime>("FechaJuego");
-
-                    b.Property<int>("GrupoEquipoId");
 
                     b.Property<int>("MarcadorA");
 
@@ -227,7 +225,8 @@ namespace Api.Migrations
 
                     b.HasOne("Api.Models.Fase", "Fase")
                         .WithMany()
-                        .HasForeignKey("FaseId");
+                        .HasForeignKey("FaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Api.Models.UsuarioGrupoUsuario", b =>

@@ -38,8 +38,8 @@ namespace Api.Controllers {
 
         [HttpPost ("Guardar")]
         public async Task<IActionResult> GuardarEquipo (EquipoRegistroDto equipoREgistroDto) {
-            if (equipoREgistroDto == null)
-                return BadRequest ("No hay equipo para registrar");
+            if (!ModelState.IsValid)
+                return BadRequest (ModelState);
 
             var equipoBuscar = new Equipo {
                 Nombre = equipoREgistroDto.Nombre
@@ -47,9 +47,6 @@ namespace Api.Controllers {
 
             if (await _equipo.BuscarEquipo (equipoBuscar) != null)
                 return BadRequest ("Ya existe un equipo con este nombre");
-
-            if (!ModelState.IsValid)
-                return BadRequest (ModelState);
 
             var archivo = equipoREgistroDto.File;
 
@@ -97,9 +94,6 @@ namespace Api.Controllers {
             if (await _equipo.ObtenerEquipo (equipoBuscar) == null)
                 return BadRequest ("El id del equipo no existe");
 
-            if (!ModelState.IsValid)
-                return BadRequest (ModelState);
-
             var listaEquipo = await _equipo.EliminarEquipo (equipoBuscar);
 
             return Ok ("Eliminado Correctamente");
@@ -108,8 +102,11 @@ namespace Api.Controllers {
         [HttpPut ("Actualizar/{Id}")]
         public async Task<IActionResult> ActualizarEquipo (int Id, [FromBody] ActualizarEquipoDto actualizarEquipoDto) {
 
+            if (!ModelState.IsValid)
+                return BadRequest (ModelState);
+
             if (Id == 0)
-                return BadRequest ("No hay equipo para eliminar");
+                return BadRequest ("No hay equipo para actualizar");
 
             var equipoBuscar = new Equipo {
                 Id = Id
@@ -119,9 +116,6 @@ namespace Api.Controllers {
 
             if (obtenerEquipo == null)
                 return BadRequest ("El id del equipo no existe");
-
-            if (!ModelState.IsValid)
-                return BadRequest (ModelState);
 
             obtenerEquipo.PartidosGanados = actualizarEquipoDto.PartidosGanados;
             obtenerEquipo.PartidosJugados = actualizarEquipoDto.PartidosJugados;
@@ -151,9 +145,6 @@ namespace Api.Controllers {
 
             if (await _equipo.ObtenerEquipo (equipoBuscar) == null)
                 return BadRequest ("El id del equipo no existe");
-
-            if (!ModelState.IsValid)
-                return BadRequest (ModelState);
 
             var detallleEquipo = await _equipo.ObtenerEquipo (equipoBuscar);
 

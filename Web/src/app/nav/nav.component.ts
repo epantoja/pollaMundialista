@@ -28,6 +28,5 @@ export class NavComponent implements OnInit {
       this.mensajeService.message("Chao, vuelve pronto");
       this.router.navigate(["/home"]);
     });
-    
   }
 }

@@ -20,9 +20,9 @@ export class UsuarioService {
 
   constructor(private http: Http, private authHttp: AuthHttp) {}
 
-  obtenerUsuario(usuario: DetalleUsuario): Observable<DetalleUsuario> {
+  obtenerUsuario(id: number): Observable<DetalleUsuario> {
     return this.authHttp
-      .post(this.baseUrl + "Obtener", usuario, this.requestOptions())
+      .get(this.baseUrl + "Obtener/" + id, this.requestOptions())
       .map(response => <DetalleUsuario>response.json())
       .catch(this.handlerError);
   }

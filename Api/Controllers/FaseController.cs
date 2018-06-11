@@ -91,6 +91,9 @@ namespace Api.Controllers {
         [HttpPut ("Actualizar/{Id}")]
         public async Task<IActionResult> ActualizarFase (int Id, [FromBody] FaseDto faseDto) {
 
+            if (!ModelState.IsValid)
+                return BadRequest (ModelState);
+
             var buscarFase = new Fase {
                 Id = Id,
                 Nombre = faseDto.Nombre,
